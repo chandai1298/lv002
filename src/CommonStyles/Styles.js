@@ -13,15 +13,13 @@ const Style = StyleSheet.create({
     height: 70,
     paddingBottom: 12,
   },
-  //header gia
   headerContainerIcon: {
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // paddingHorizontal: 20,
+    // backgroundColor: 'red',
   },
-  //header icon
+  //header icon va icon gia
   headerIcon: {
-    width: 23,
+    width: 30,
   },
 
   listItem: {

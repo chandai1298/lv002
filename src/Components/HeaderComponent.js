@@ -5,13 +5,20 @@ import Styles from '../CommonStyles/Styles';
 
 const Header = ({title, icon}) => (
   <View style={Styles.headerContainer}>
+    {/* left */}
     <View style={Styles.headerContainerIcon}>
       <View style={Styles.headerIcon} />
     </View>
-    {/* <Text style={Styles.textStyle}>{}</Text> */}
+    {/* mid */}
     <Text style={Styles.textStyle}>{title}</Text>
+    {/* right */}
     <View style={Styles.headerContainerIcon}>
-      <FontAwesome5 name={icon} size={26} color="#1d2129" />
+      <FontAwesome5
+        name={icon}
+        size={20}
+        color="#1d2129"
+        style={Styles.headerIcon}
+      />
     </View>
   </View>
 );

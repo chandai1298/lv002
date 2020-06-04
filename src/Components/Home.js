@@ -19,7 +19,7 @@ export default class Home extends Component {
     return (
       <View style={Styles.container}>
         <StatusBar barStyle="light-content"> </StatusBar>
-        <HeaderComponent title="Home" icon="" />
+        <HeaderComponent />
         <View>
           <ScrollView horizontal={false}>
             {/* listitem */}
