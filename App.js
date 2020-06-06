@@ -1,56 +1,43 @@
 import React, {Component} from 'react';
-import {Text, View, StatusBar, Button, Image} from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {View} from 'react-native';
 // thu vien ngoai
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 // import tu src
-import Home from './src/Components/Home';
-import Rank from './src/Components/Rank';
-import Profile from './src/Components/Profile';
+import Setting from './src/Components/Setting';
 import Styles from './src/CommonStyles/Styles';
-import {NavigationContainer} from '@react-navigation/native';
+import BottomTabMain from './src/Components/BottomTabMain';
+const Stack = createStackNavigator();
 
-const Tab = createBottomTabNavigator();
+// Màn hình chính gồm 3 bottom tab và header
+function HomeScreen({navigation}) {
+  return (
+    <View style={Styles.container}>
+      <BottomTabMain navigation={navigation} />
+    </View>
+  );
+}
+function SettingScreen({navigation}) {
+  return (
+    <View style={Styles.container}>
+      <Setting navigation={navigation} />
+    </View>
+  );
+}
+
 //class app
 export default class App extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-              tabBarLabel: 'Home',
-              tabBarIcon: ({color}) => (
-                <FontAwesome5 name="home" size={26} color="#1d2129" />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Profile"
-            component={Profile}
-            options={{
-              tabBarLabel: 'Profile',
-              tabBarIcon: ({color}) => (
-                <FontAwesome5 name="user" size={26} color="#1d2129" />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Rank"
-            component={Rank}
-            options={{
-              tabBarLabel: 'Rank',
-              tabBarIcon: ({color}) => (
-                <FontAwesome5 name="chart-bar" size={26} color="#1d2129" />
-              ),
-            }}
-          />
-        </Tab.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+          {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+          <Stack.Screen name="Setting" component={SettingScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }
