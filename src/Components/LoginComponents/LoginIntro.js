@@ -1,0 +1,51 @@
+import React, {Component} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {LoginStyles, Style} from '../../CommonStyles';
+
+const Section = ({navigation, desNav, text1, text2, btnText}) => {
+  return (
+    <View style={Style.rowCenter}>
+      <Text style={Style.textBold30}>{text1}</Text>
+      <Text style={Style.text18}>{text2}</Text>
+
+      <TouchableOpacity
+        style={
+          btnText === 'Đăng nhập'
+            ? [LoginStyles.button, {backgroundColor: '#95d332'}]
+            : [LoginStyles.button, {borderWidth: 2, borderColor: '#27363d'}]
+        }
+        onPress={() => navigation.push(desNav)}>
+        <Text style={Style.text15}>{btnText}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+class LoginIntro extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const {navigation} = this.props;
+    return (
+      <View style={Style.coverCenter}>
+        <Section
+          navigation={navigation}
+          desNav="Login"
+          text1="Đã có tài khoản?"
+          text2="Tiếp tục từ phần bạn đang dang dở."
+          btnText="Đăng nhập"
+        />
+        {/* line*/}
+        <View style={Style.line} />
+        <Section
+          navigation={navigation}
+          desNav="BeginLearning"
+          text1="Bạn mới tham gia?"
+          text2="Bắt đầu học ngay thôi nào!"
+          btnText="Bắt đầu"
+        />
+      </View>
+    );
+  }
+}
+export default LoginIntro;
