@@ -1,43 +1,73 @@
 import React from 'react';
-import {Switch, Text, View, StyleSheet} from 'react-native';
-import {Style} from '../../CommonStyles';
+import {Text, View, FlatList} from 'react-native';
+import {Style, SettingStyle} from '../../CommonStyles';
+import SwitchComponent from './SwitchComponent';
+const DATA = [
+  {
+    label: 'Âm thanh',
+    switchValue: false,
+  },
+  {
+    label: 'Thông báo khích lệ',
+    switchValue: true,
+  },
+  {
+    label: 'Bài tập nói',
+    switchValue: false,
+  },
+  {
+    label: 'Bài tập nghe',
+    switchValue: true,
+  },
+];
 
 // Component tong quan trong setting
 export default class OverviewSettingComponent extends React.Component {
-  state = {switchValue: false};
-  toggleSwitch = (value) => {
-    this.setState({switchValue: value});
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      loading: false,
+      error: null,
+    };
+  }
+  componentDidMount() {
+    this.requestAPIPhotos();
+  }
+  requestAPIPhotos = () => {
+    this.setState({loading: true});
+    const apiURL = 'https://jsonplaceholder.typicode.com/photos';
+    fetch(apiURL)
+      .then((res) => res.json())
+      .then((resJson) => {
+        this.setState({
+          loading: false,
+          data: DATA,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          error,
+          loading: false,
+        });
+      });
   };
+
   render() {
     return (
-      <View>
-        <Text style={Style.title}>Tổng quan</Text>
-        <View style={Style.flexDirectionRow}>
-          <Text style={Style.flexDirectionRowItem}>Âm thanh</Text>
-          <Switch
-            onValueChange={this.toggleSwitch}
-            value={this.state.switchValue}
-          />
-        </View>
-        <View style={Style.flexDirectionRow}>
-          <Text style={Style.flexDirectionRowItem}>Thông báo khích lệ</Text>
-          <Switch
-            onValueChange={this.toggleSwitch}
-            value={this.state.switchValue}
-          />
-        </View>
-        <View style={Style.flexDirectionRow}>
-          <Text style={Style.flexDirectionRowItem}>Bài tập nói</Text>
-          <Switch
-            onValueChange={this.toggleSwitch}
-            value={this.state.switchValue}
-          />
-        </View>
-        <View style={Style.flexDirectionRow}>
-          <Text style={Style.flexDirectionRowItem}>Bài tập nghe</Text>
-          <Switch
-            onValueChange={this.toggleSwitch}
-            value={this.state.switchValue}
+      <View style={SettingStyle.sectionIn4}>
+        <Text style={Style.text18}>Tổng quan</Text>
+
+        <View>
+          <FlatList
+            data={this.state.data}
+            renderItem={({item}) => (
+              <View style={SettingStyle.flexDirectionRow}>
+                <Text>{item.label}</Text>
+                <SwitchComponent switchValue={item.switchValue} />
+              </View>
+            )}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </View>

@@ -1,7 +1,7 @@
 // thu vien
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {Style, ProfileStyle} from '../CommonStyles';
+import {Style, ProfileStyle, DIMENSION} from '../CommonStyles';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import HeaderComponent from './HeaderComponent';
 import ThanhTich from './ProfileComponent/ThanhTich';
@@ -25,7 +25,11 @@ const Avatar = ({image, name}) => (
         <Text style={[Style.text18]}>{name}</Text>
         {/* icon rank */}
         <View>
-          <FontAwesome5 name="seedling" size={18} color="#79c615" />
+          <FontAwesome5
+            name="seedling"
+            size={DIMENSION.sizeIcon}
+            color="#79c615"
+          />
         </View>
       </View>
 
@@ -33,31 +37,46 @@ const Avatar = ({image, name}) => (
       <Text>Hoaichodien</Text>
       <View style={ProfileStyle.flexRowIcon}>
         <View style={ProfileStyle.widthIcon}>
-          <FontAwesome5 name="user-friends" size={15} color="#9e9e9e" />
+          <FontAwesome5
+            name="user-friends"
+            size={DIMENSION.sizeIcon2}
+            color="#9e9e9e"
+          />
         </View>
         <Text>16 bạn bè</Text>
       </View>
       <View style={ProfileStyle.flexRowIcon}>
         <View style={ProfileStyle.widthIcon}>
-          <FontAwesome5 name="bolt" size={15} color="#ffeb3b" />
+          <FontAwesome5
+            name="bolt"
+            size={DIMENSION.sizeIcon2}
+            color="#ffeb3b"
+          />
         </View>
         <Text>3746 tổng điểm</Text>
       </View>
       <View style={ProfileStyle.flexRowIcon}>
         <View style={ProfileStyle.widthIcon}>
-          <FontAwesome5 name="crown" size={15} color="#ffc107" />
+          <FontAwesome5
+            name="crown"
+            size={DIMENSION.sizeIcon2}
+            color="#ffc107"
+          />
         </View>
         <Text>126 vương miện</Text>
       </View>
       <View style={ProfileStyle.flexRowIcon}>
         <View style={ProfileStyle.widthIcon}>
-          <FontAwesome5 name="fire-alt" size={15} color="#fa494b" />
+          <FontAwesome5
+            name="fire-alt"
+            size={DIMENSION.sizeIcon2}
+            color="#fa494b"
+          />
         </View>
         <Text>16 chuỗi ngày</Text>
       </View>
     </View>
 
-    {/* avatar */}
     <View style={[ProfileStyle.SectionAvtRight, {justifyContent: 'center'}]}>
       <Image
         source={{uri: 'https://via.placeholder.com/150/92c952'}}
@@ -67,9 +86,8 @@ const Avatar = ({image, name}) => (
   </View>
 );
 
-// class profile có header, avatar, 2 top tab thành tích đạt được, danh sách bạn bè
 const Tab = createMaterialTopTabNavigator();
-export default class App extends React.Component {
+export default class Profile extends React.Component {
   constructor(props) {
     super(props);
   }

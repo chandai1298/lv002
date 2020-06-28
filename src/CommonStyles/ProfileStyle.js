@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {DIMENSION} from '../CommonStyles';
 const ProfileStyle = StyleSheet.create({
   // section avatar
   sectionAvatar: {

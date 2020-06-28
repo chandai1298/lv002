@@ -6,7 +6,7 @@ import Rank from './Rank';
 import Profile from './Profile';
 
 const HomeScreen = ({navigation}) => {
-  return <Home navigation={navigation} />;
+  return <Home icon1="bolt" icon2="crown" icon3="fire-alt" icon4="heartbeat" />;
 };
 const ProfileScreen = ({navigation}) => {
   return (
@@ -22,7 +22,6 @@ const RankScreen = ({navigation}) => {
   return <Rank title="Xếp hạng" navigation={navigation} />;
 };
 
-//Class BottomTabMain 3 Tab duoi man hinh
 const Tab = createBottomTabNavigator();
 export default class BottomTabMain extends React.Component {
   constructor(props) {

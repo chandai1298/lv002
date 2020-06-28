@@ -36,27 +36,22 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          {/* Man hinh khi vua mo ung dung neu chua dang nhap */}
           {/* <Stack.Screen
             name="LoginIntro"
             component={LoginIntro}
             options={{headerShown: false}}
-          /> */}
-          {/* Man hinh dang nhap */}
-          {/* <Stack.Screen
+          />
+          <Stack.Screen
             name="Login"
             component={Login}
             options={{title: 'Đăng nhập'}}
-          /> */}
-          {/* Man hinh bat dau hoc roi moi dang ky */}
-          {/* <Stack.Screen name="BeginLearning" component={BeginLearning} /> */}
-          {/* Man hinh home co 3 bottom tab */}
+          />
+          <Stack.Screen name="BeginLearning" component={BeginLearning} /> */}
           <Stack.Screen
             name="Home"
             component={HomeScreen}
             options={{headerShown: false}}
           />
-          {/* man hinh cai dat */}
           <Stack.Screen
             name="Setting"
             component={SettingScreen}

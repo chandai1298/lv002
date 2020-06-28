@@ -1,19 +1,16 @@
 import React from 'react';
 import {Text, View, StatusBar, Image, FlatList} from 'react-native';
 import {Style, DIMENSION} from '../CommonStyles';
-import HeaderComponent from './HeaderComponent';
+import HeaderHome from './HomeComponents/HeaderHome';
 
-//cac item bài học
 const Items = ({title, thumbnailUrl}) => (
-  // var img=image;
   <View style={[Style.coverCenter, {padding: 10}]}>
     <Image source={{uri: thumbnailUrl}} style={Style.images} />
     <Text style={Style.text15}>Hello {title}</Text>
   </View>
 );
 
-// Home gồm các bài học
-export default class App extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,16 +44,11 @@ export default class App extends React.Component {
 
   render() {
     let {data} = this.state;
-    let {title, navigation, icon, desComponent} = this.props;
+    let {icon1, icon2, icon3, icon4} = this.props;
     return (
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" />
-        <HeaderComponent
-          title={title}
-          icon={icon}
-          navigation={navigation}
-          desComponent={desComponent}
-        />
+        <HeaderHome icon1={icon1} icon2={icon2} icon3={icon3} icon4={icon4} />
 
         <View style={Style.coverCenter}>
           <FlatList
@@ -72,4 +64,3 @@ export default class App extends React.Component {
     );
   }
 }
-// export default Home;

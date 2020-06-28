@@ -30,11 +30,11 @@ const Style = StyleSheet.create({
     borderColor: '#000',
   },
   input: {
-    height: 50,
+    height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 20,
-    marginBottom: 15,
+    marginBottom: 10,
     width: DIMENSION.width - 30,
   },
   textColor95d332: {
@@ -53,13 +53,13 @@ const Style = StyleSheet.create({
 
   //header 3 component chiều ngang dãn đều
   headerContainer: {
-    borderColor: '#000',
     borderBottomWidth: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 30,
-    height: 70,
-    paddingBottom: 12,
+    alignItems: 'center',
+    paddingTop: 20,
+    height: 60,
+    // paddingBottom: 12,
   },
 
   //header icon va icon gia
@@ -67,25 +67,10 @@ const Style = StyleSheet.create({
     width: 30,
   },
 
-  // Style ảnh avatar và các bài học
   images: {
     height: 100,
     width: 100,
     borderRadius: 250,
-  },
-
-  flexDirectionRow: {
-    flexDirection: 'row',
-    height: 40,
-    borderRadius: 10,
-    justifyContent: 'space-between',
-    borderColor: '#000',
-    borderWidth: 1,
-    marginBottom: 5,
-  },
-  flexDirectionRowItem: {
-    paddingTop: 8,
-    paddingLeft: 20,
   },
 });
 export {Style};
