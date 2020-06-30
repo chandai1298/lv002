@@ -2,13 +2,7 @@ import React from 'react';
 import {Text, View, StatusBar, Image, FlatList} from 'react-native';
 import {Style, DIMENSION} from '../CommonStyles';
 import HeaderHome from './HomeComponents/HeaderHome';
-
-const Items = ({title, thumbnailUrl}) => (
-  <View style={[Style.coverCenter, {padding: 10}]}>
-    <Image source={{uri: thumbnailUrl}} style={Style.images} />
-    <Text style={Style.text15}>Hello {title}</Text>
-  </View>
-);
+import HomeItem from './HomeComponents/HomeItem';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -44,7 +38,7 @@ export default class Home extends React.Component {
 
   render() {
     let {data} = this.state;
-    let {icon1, icon2, icon3, icon4} = this.props;
+    let {icon1, icon2, icon3, icon4, navigation} = this.props;
     return (
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" />
@@ -55,7 +49,12 @@ export default class Home extends React.Component {
             style={{width: DIMENSION.width}}
             data={data}
             renderItem={({item}) => (
-              <Items thumbnailUrl={item.thumbnailUrl} title={item.id} />
+              <HomeItem
+                icon="book"
+                title={item.title}
+                navigation={navigation}
+                desComponent="Setting"
+              />
             )}
             keyExtractor={(item, index) => index.toString()}
           />

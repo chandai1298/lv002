@@ -6,7 +6,15 @@ import Rank from './Rank';
 import Profile from './Profile';
 
 const HomeScreen = ({navigation}) => {
-  return <Home icon1="bolt" icon2="crown" icon3="fire-alt" icon4="heartbeat" />;
+  return (
+    <Home
+      icon1="bolt"
+      icon2="crown"
+      icon3="fire-alt"
+      icon4="heartbeat"
+      navigation={navigation}
+    />
+  );
 };
 const ProfileScreen = ({navigation}) => {
   return (
