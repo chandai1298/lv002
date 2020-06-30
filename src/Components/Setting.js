@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text, Image, TextInput, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {Style, SettingStyle} from '../CommonStyles';
 import HeaderComponent from './HeaderComponent';
 import OverviewSettingComponent from './SettingComponents/OverviewSettingComponent';
 import NotiComponent from './SettingComponents/NotiComponent';
 import In4Component from './SettingComponents/In4Component';
-// class setting
+
 export default class Setting extends React.Component {
   constructor(props) {
     super(props);
