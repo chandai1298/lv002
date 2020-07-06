@@ -36,7 +36,7 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="LoginIntro"
             component={LoginIntro}
             options={{headerShown: false}}
@@ -46,7 +46,7 @@ export default class App extends Component {
             component={Login}
             options={{title: 'Đăng nhập'}}
           />
-          <Stack.Screen name="BeginLearning" component={BeginLearning} /> */}
+          <Stack.Screen name="BeginLearning" component={BeginLearning} />
           <Stack.Screen
             name="Home"
             component={HomeScreen}

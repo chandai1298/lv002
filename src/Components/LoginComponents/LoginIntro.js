@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, Button} from 'react-native';
 import {LoginStyles, Style} from '../../CommonStyles';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Section = ({navigation, desNav, text1, text2, btnText}) => {
   return (
@@ -35,7 +36,6 @@ class LoginIntro extends Component {
           text2="Tiếp tục từ phần bạn đang dang dở."
           btnText="Đăng nhập"
         />
-        {/* line*/}
         <View style={Style.line} />
         <Section
           navigation={navigation}
