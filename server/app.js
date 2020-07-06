@@ -24,7 +24,18 @@ con.connect(function (error) {
   if (error) console.log(error);
   else console.log('connected');
 });
+// Information APP
+app.get('/getDataApp_Home', function (req, res) {
+  con.query('select * from category', function (error, rows, fields) {
+    if (error) console.log(error);
+    else {
+      console.log(rows);
+      res.send(rows);
+    }
+  });
+});
 
+// Information USER
 app.get('/getData', function (req, res) {
   con.query('select * from user', function (error, rows, fields) {
     if (error) console.log(error);
@@ -47,7 +58,6 @@ app.post('/sendData', function (req, res) {
   con.query(query, function (error, rows, fields) {
     if (error) console.log(error);
     else {
-      // console.log(error);
       res.send(rows);
     }
   });

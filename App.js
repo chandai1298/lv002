@@ -8,10 +8,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Setting from './src/Components/Setting';
 import {Style} from './src/CommonStyles';
 import BottomTabMain from './src/Components/BottomTabMain';
-import LoginIntro from './src/Components/LoginComponents/LoginIntro';
-import Login from './src/Components/LoginComponents/Login';
-import BeginLearning from './src/Components/LoginComponents/BeginLearning';
-const Stack = createStackNavigator();
+import {AuthStackNavigator} from './src/Components/LoginComponents/AuthStackNavigator';
+import AsyncStorage from '@react-native-community/async-storage';
 
 // Màn hình chính gồm 3 bottom tab và header
 function HomeScreen({navigation}) {
@@ -29,35 +27,39 @@ function SettingScreen({navigation}) {
     </View>
   );
 }
-
 //class app
+const RootStack = createStackNavigator();
 export default class App extends Component {
+  getAsync = async () => {
+    let user = await AsyncStorage.getItem('isLoggedIn');
+    let parsed = JSON.parse(user);
+    console.log(parsed);
+    return parsed;
+  };
   render() {
+    const isLoggedIn = this.getAsync();
+
     return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="LoginIntro"
-            component={LoginIntro}
+        <RootStack.Navigator>
+          <RootStack.Screen
+            name="RootStack"
+            component={AuthStackNavigator}
             options={{headerShown: false}}
           />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{title: 'Đăng nhập'}}
-          />
-          <Stack.Screen name="BeginLearning" component={BeginLearning} />
-          <Stack.Screen
+
+          <RootStack.Screen
             name="Home"
             component={HomeScreen}
             options={{headerShown: false}}
           />
-          <Stack.Screen
+
+          <RootStack.Screen
             name="Setting"
             component={SettingScreen}
             options={{headerShown: false}}
           />
-        </Stack.Navigator>
+        </RootStack.Navigator>
       </NavigationContainer>
     );
   }

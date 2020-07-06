@@ -6,43 +6,45 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
+  Button,
 } from 'react-native';
 import {Style, DIMENSION} from '../CommonStyles';
 import HeaderHome from './HomeComponents/HeaderHome';
 import HomeItem from './HomeComponents/HomeItem';
+import {IN4_APP} from '../../server/ConnectServer/In4App';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      loading: false,
-      error: null,
+      loading: true,
     };
   }
   componentDidMount() {
     this.requestAPIPhotos();
   }
   requestAPIPhotos = () => {
-    this.setState({loading: true});
-    const apiURL = 'https://jsonplaceholder.typicode.com/photos';
+    const apiURL = IN4_APP.getDataApp_Home;
     fetch(apiURL)
       .then((res) => res.json())
-      .then((resJson) => {
+      .then((results) => {
         this.setState({
           loading: false,
-          data: resJson,
-          fullData: resJson,
+          data: results,
         });
       })
       .catch((error) => {
+        console.log('err', error);
         this.setState({
-          error,
           loading: false,
         });
       });
   };
-
+  kill = async () => {
+    await AsyncStorage.clear();
+  };
   render() {
     let {data, loading} = this.state;
     let {icon1, icon2, icon3, icon4, navigation} = this.props;
@@ -50,6 +52,7 @@ export default class Home extends React.Component {
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" />
         <HeaderHome icon1={icon1} icon2={icon2} icon3={icon3} icon4={icon4} />
+        <Button title="pres" onPress={() => this.kill()} />
 
         <View style={Style.coverCenter}>
           {loading ? (
@@ -61,12 +64,12 @@ export default class Home extends React.Component {
               renderItem={({item}) => (
                 <HomeItem
                   icon="book"
-                  title={item.title}
+                  title={item.name}
                   navigation={navigation}
                   desComponent="Setting"
                 />
               )}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={(item) => `${item.id}`}
             />
           )}
         </View>

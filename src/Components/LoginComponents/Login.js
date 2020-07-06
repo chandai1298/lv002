@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {LoginStyles, Style, DIMENSION} from '../../CommonStyles';
 import AsyncStorage from '@react-native-community/async-storage';
+import {IN4_USER} from '../../../server/ConnectServer/In4User';
 
 const Login = ({navigation}) => {
   const [txtUsername, onChangeUsername] = React.useState('');
   const [txtPassword, onChangePassword] = React.useState('');
   const checkLogin = () => {
-    const url = 'http://69ce3e16cb04.ngrok.io/checkLogin';
+    const url = IN4_USER.checkLogin;
     fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -23,11 +24,11 @@ const Login = ({navigation}) => {
         } else {
           if (results.length == 1) {
             console.log(results);
-            AsyncStorage.setItem(
-              'isLoggedIn',
-              JSON.stringify({isLoggedIn: true}),
-            );
-            navigation.replace('Home', results);
+            AsyncStorage.setItem('isLoggedIn', 'true');
+            // Alert.alert(`${results.username}`);
+            // console.log(results.username);
+            // AsyncStorage.setItem('user', JSON.stringify(results));
+            navigation.replace('Home');
           } else Alert.alert('Sai thông tin đăng nhập');
         }
       })

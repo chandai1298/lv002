@@ -25,8 +25,17 @@ class LoginIntro extends Component {
   constructor(props) {
     super(props);
   }
+
+  getAsync = async () => {
+    let user = await AsyncStorage.getItem('isLoggedIn');
+    let parsed = JSON.parse(user);
+    console.log(parsed);
+    return parsed;
+  };
+
   render() {
     const {navigation} = this.props;
+    const isLoggedIn = this.getAsync();
     return (
       <View style={Style.coverCenter}>
         <Section
