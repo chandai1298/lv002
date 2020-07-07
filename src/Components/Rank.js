@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
-import {Style} from '../CommonStyles';
 import HeaderComponent from './HeaderComponent';
 
 const Rank = ({title, icon, navigation, desComponent}) => {

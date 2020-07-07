@@ -17,7 +17,7 @@ export default class HeaderComponent extends React.Component {
         <FontAwesome5
           name={icon}
           size={20}
-          color="#4ca9e6"
+          color="#4285f4"
           style={Style.headerIcon}
           onPress={
             title === 'Xếp hạng'

@@ -95,7 +95,7 @@ export default class Avatar extends Component {
             </View>
           </View>
 
-          <Text>{username}Hoaichodien</Text>
+          <Text>{username}</Text>
 
           <View style={{marginBottom: 5}}>
             <FlatList

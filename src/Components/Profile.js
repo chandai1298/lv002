@@ -1,5 +1,4 @@
-// thu vien
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Image} from 'react-native';
 import {Style, ProfileStyle, DIMENSION} from '../CommonStyles';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
@@ -7,6 +6,7 @@ import HeaderComponent from './HeaderComponent';
 import ThanhTich from './ProfileComponent/ThanhTich';
 import BanBe from './ProfileComponent/BanBe';
 import Avatar from './ProfileComponent/Avatar';
+import AsyncStorage from '@react-native-community/async-storage';
 
 function ThanhTichComponent() {
   return <ThanhTich />;
@@ -14,56 +14,67 @@ function ThanhTichComponent() {
 function BanBeComponent() {
   return <BanBe />;
 }
-function AvatarComponent({name}) {
-  return <Avatar name={name} />;
-}
-
-// Avatar
 
 const Tab = createMaterialTopTabNavigator();
-export default class Profile extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    let {title, navigation, icon, desComponent} = this.props;
-    return (
-      <View style={Style.container}>
-        <HeaderComponent
-          title={title}
-          icon={icon}
-          navigation={navigation}
-          desComponent={desComponent}
-        />
+const Profile = ({title, navigation, icon, desComponent}) => {
+  const [data, setData] = React.useState([
+    {
+      id: '',
+      username: '',
+      password: '',
+      name: '',
+      email: '',
+      avatar: '',
+      roleId: '',
+      isActive: '',
+    },
+  ]);
 
-        <AvatarComponent name="Hoài chó điên" />
+  useEffect(() => {
+    showData();
+  }, []);
 
-        <View style={ProfileStyle.containerPadding15}>
-          <Tab.Navigator
-            tabBarOptions={{
-              labelStyle: {fontSize: 15},
-              // tabStyle: {width: 100},
-              style: {
-                fontWeight: 'bold', // height: 40,
-              },
-            }}>
-            <Tab.Screen
-              name="ThanhTich"
-              component={ThanhTichComponent}
-              options={{
-                tabBarLabel: 'Thành tích',
-              }}
-            />
-            <Tab.Screen
-              name="Banbe"
-              component={BanBeComponent}
-              options={{
-                tabBarLabel: 'Bạn bè',
-              }}
-            />
-          </Tab.Navigator>
-        </View>
+  const showData = async () => {
+    let user = await AsyncStorage.getItem('user');
+    let parsed = JSON.parse(user);
+    setData(parsed);
+  };
+  const userData = data[0];
+  return (
+    <View style={Style.container}>
+      <HeaderComponent
+        title={title}
+        icon={icon}
+        navigation={navigation}
+        desComponent={desComponent}
+      />
+      <Avatar name={userData.name} username={userData.username} />
+      <View style={ProfileStyle.containerPadding15}>
+        <Tab.Navigator
+          tabBarOptions={{
+            labelStyle: {fontSize: 15},
+            // tabStyle: {width: 100},
+            style: {
+              fontWeight: 'bold', // height: 40,
+            },
+          }}>
+          <Tab.Screen
+            name="ThanhTich"
+            component={ThanhTichComponent}
+            options={{
+              tabBarLabel: 'Thành tích',
+            }}
+          />
+          <Tab.Screen
+            name="Banbe"
+            component={BanBeComponent}
+            options={{
+              tabBarLabel: 'Bạn bè',
+            }}
+          />
+        </Tab.Navigator>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+export default Profile;

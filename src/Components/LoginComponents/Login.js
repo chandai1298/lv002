@@ -24,9 +24,7 @@ const Login = ({navigation}) => {
         } else {
           if (results.length == 1) {
             console.log(results);
-            AsyncStorage.setItem('isLoggedIn', 'true');
-            // Alert.alert(`${results.username}`);
-            // console.log(results.username);
+            AsyncStorage.setItem('isLoggedIn', '1');
             // AsyncStorage.setItem('user', JSON.stringify(results));
             navigation.replace('Home');
           } else Alert.alert('Sai thông tin đăng nhập');

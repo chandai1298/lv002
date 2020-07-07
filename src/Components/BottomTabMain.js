@@ -1,9 +1,9 @@
 import React from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from './Home';
-import Rank from './Rank';
-import Profile from './Profile';
+import Home from '../Components/Home';
+import Rank from '../Components/Rank';
+import Profile from '../Components/Profile';
 
 const HomeScreen = ({navigation}) => {
   return (

@@ -65,13 +65,8 @@ app.post('/sendData', function (req, res) {
 app.post('/checkLogin', function (req, res) {
   var user = req.body;
   //   var query = "CALL login ('" + user.username + "','" + user.password + "')";
-  var query =
-    "select * from user where username='" +
-    user.username +
-    "' and password='" +
-    user.password +
-    "'";
-  con.query(query, [user.username, user.password], (err, rows, fields) => {
+  var query = "select * from user where username='" + user.username + "'";
+  con.query(query, [user.username], (err, rows, fields) => {
     if (!err) {
       res.send(rows);
     } else {

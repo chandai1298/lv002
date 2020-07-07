@@ -10,9 +10,7 @@ const LoginStyles = StyleSheet.create({
   },
   formDN: {
     flex: 1,
-    // justifyContent: 'center',
     padding: 15,
-    // alignItems: 'center',
   },
 });
 export {LoginStyles};

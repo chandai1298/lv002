@@ -6,13 +6,11 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
-  Button,
 } from 'react-native';
 import {Style, DIMENSION} from '../CommonStyles';
 import HeaderHome from './HomeComponents/HeaderHome';
 import HomeItem from './HomeComponents/HomeItem';
 import {IN4_APP} from '../../server/ConnectServer/In4App';
-import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -42,9 +40,7 @@ export default class Home extends React.Component {
         });
       });
   };
-  kill = async () => {
-    await AsyncStorage.clear();
-  };
+
   render() {
     let {data, loading} = this.state;
     let {icon1, icon2, icon3, icon4, navigation} = this.props;
@@ -52,18 +48,17 @@ export default class Home extends React.Component {
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" />
         <HeaderHome icon1={icon1} icon2={icon2} icon3={icon3} icon4={icon4} />
-        <Button title="pres" onPress={() => this.kill()} />
 
         <View style={Style.coverCenter}>
           {loading ? (
             <ActivityIndicator size="large" color="0000ff" />
           ) : (
             <FlatList
-              style={{width: DIMENSION.width}}
+              style={{width: DIMENSION.width, marginTop: 40}}
               data={data}
               renderItem={({item}) => (
                 <HomeItem
-                  icon="book"
+                  // icon="book"
                   title={item.name}
                   navigation={navigation}
                   desComponent="Setting"

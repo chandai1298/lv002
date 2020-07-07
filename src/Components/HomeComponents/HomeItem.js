@@ -9,17 +9,23 @@ export default class HomeItem extends React.Component {
   }
 
   render() {
-    let {icon, navigation, title, desComponent} = this.props;
+    let {navigation, title, desComponent} = this.props;
     return (
-      <View
-        style={[
-          Style.coverCenter,
-          {padding: 10, backgroundColor: 'blue', marginBottom: 10},
-        ]}>
+      <View style={[Style.coverCenter, {marginBottom: 15}]}>
         <TouchableOpacity
-          style={HomeStyle.headerFlexIcon}
+          style={[
+            HomeStyle.headerFlexIcon,
+            {
+              borderWidth: 1,
+              borderColor: '#000',
+              width: '60%',
+              height: 50,
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
+          ]}
           onPress={() => navigation.navigate(desComponent)}>
-          <FontAwesome5 name={icon} size={DIMENSION.sizeIcon} color="#ffc107" />
+          {/* <FontAwesome5 name={icon} size={DIMENSION.sizeIcon} color="#ffc107" /> */}
           <Text style={Style.text15}>{title}</Text>
         </TouchableOpacity>
       </View>

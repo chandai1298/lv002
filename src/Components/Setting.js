@@ -1,33 +1,53 @@
-import React from 'react';
-import {View, ScrollView} from 'react-native';
-import {Style, SettingStyle} from '../CommonStyles';
+import React, {useEffect} from 'react';
+import {View, ScrollView, Button} from 'react-native';
 import HeaderComponent from './HeaderComponent';
-import OverviewSettingComponent from './SettingComponents/OverviewSettingComponent';
-import NotiComponent from './SettingComponents/NotiComponent';
-import In4Component from './SettingComponents/In4Component';
+import OverviewSettingComponent from '../Components/SettingComponents/OverviewSettingComponent';
+import NotiComponent from '../Components/SettingComponents/NotiComponent';
+import In4Component from '../Components/SettingComponents/In4Component';
+import {AuthContext} from '../Components/LoginComponents/context';
+import AsyncStorage from '@react-native-community/async-storage';
 
-export default class Setting extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    let {title, navigation, icon, desComponent} = this.props;
-    return (
-      <View>
-        <HeaderComponent
-          title="Cài đặt"
-          icon="check"
-          navigation={navigation}
-          desComponent="Home"
-        />
+const Setting = ({navigation}) => {
+  const {signOut, toggleTheme} = React.useContext(AuthContext);
+  const [data, setData] = React.useState([
+    {
+      id: '',
+      username: '',
+      password: '',
+      name: '',
+      email: '',
+      avatar: '',
+      roleId: '',
+      isActive: '',
+    },
+  ]);
 
-        <ScrollView horizontal={false}>
-          <In4Component />
-          <OverviewSettingComponent />
+  useEffect(() => {
+    showData();
+  }, []);
 
-          <NotiComponent />
-        </ScrollView>
-      </View>
-    );
-  }
-}
+  const showData = async () => {
+    let user = await AsyncStorage.getItem('user');
+    let parsed = JSON.parse(user);
+    setData(parsed);
+  };
+  const userData = data[0];
+  return (
+    <View>
+      <HeaderComponent
+        title="Cài đặt"
+        icon="check"
+        navigation={navigation}
+        desComponent="Home"
+      />
+
+      <ScrollView horizontal={false}>
+        <In4Component userData={userData} />
+        <Button title="logout" onPress={() => signOut()} />
+        <OverviewSettingComponent userData={userData} />
+        <NotiComponent userData={userData} />
+      </ScrollView>
+    </View>
+  );
+};
+export default Setting;
