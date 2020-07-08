@@ -6,7 +6,10 @@ const Avatar = ({image}) => (
   <View style={Style.coverCenter}>
     <Image
       source={{
-        uri: image === null ? 'https://via.placeholder.com/150/56a8c2' : 'image',
+        uri:
+          image === null
+            ? 'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/B71D1D97-9FF3-444A-B7F3-E1CAC41A8BAE.jpg?alt=media&token=2087bb6f-4b1a-451e-8deb-d8948fefb651'
+            : 'image',
       }}
       style={Style.images}
     />

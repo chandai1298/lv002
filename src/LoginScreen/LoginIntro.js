@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Alert, Button} from 'react-native';
-import {LoginStyles, Style} from '../../CommonStyles';
+import {LoginStyles, Style} from '../CommonStyles';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Section = ({navigation, desNav, text1, text2, btnText}) => {

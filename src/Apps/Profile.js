@@ -3,9 +3,9 @@ import {View, Text, Image} from 'react-native';
 import {Style, ProfileStyle, DIMENSION} from '../CommonStyles';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import HeaderComponent from './HeaderComponent';
-import ThanhTich from './ProfileComponent/ThanhTich';
-import BanBe from './ProfileComponent/BanBe';
-import Avatar from './ProfileComponent/Avatar';
+import ThanhTich from '../Components/ProfileComponent/ThanhTich';
+import BanBe from '../Components/ProfileComponent/BanBe';
+import Avatar from '../Components/ProfileComponent/Avatar';
 import AsyncStorage from '@react-native-community/async-storage';
 
 function ThanhTichComponent() {

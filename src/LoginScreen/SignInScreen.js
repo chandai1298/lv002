@@ -16,8 +16,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import {useTheme} from 'react-native-paper';
 import {AuthContext} from './context';
-import Users from './user';
-import {IN4_USER} from '../../../server/ConnectServer/In4User';
+import {IN4_USER} from '../../server/ConnectServer/In4User';
 
 const SignInScreen = ({navigation}) => {
   const [data, setData] = React.useState({

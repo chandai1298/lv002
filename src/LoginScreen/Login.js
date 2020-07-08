@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
-import {LoginStyles, Style, DIMENSION} from '../../CommonStyles';
+import {LoginStyles, Style, DIMENSION} from '../CommonStyles';
 import AsyncStorage from '@react-native-community/async-storage';
-import {IN4_USER} from '../../../server/ConnectServer/In4User';
+import {IN4_USER} from '../../server/ConnectServer/In4User';
 
 const Login = ({navigation}) => {
   const [txtUsername, onChangeUsername] = React.useState('');

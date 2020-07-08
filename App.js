@@ -1,29 +1,53 @@
 import React, {useEffect} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
   DarkTheme as NavigationDarkTheme,
 } from '@react-navigation/native';
-
 import {
   Provider as PaperProvider,
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
 } from 'react-native-paper';
 
-import {AuthContext} from './src/Components/LoginComponents/context';
-
-import AsyncStorage from '@react-native-community/async-storage';
-import Setting from './src/Components/Setting';
+import Setting from './src/Apps/Setting';
 import {Style} from './src/CommonStyles';
-import BottomTabMain from './src/Components/BottomTabMain';
-import LoginIntro from './src/Components/LoginComponents/LoginIntro';
-import Login from './src/Components/LoginComponents/Login';
-import SplashScreen from './src/Components/LoginComponents/SplashScreen';
-import SignInScreen from './src/Components/LoginComponents/SignInScreen';
+import BottomTabMain from './src/Apps/BottomTabMain';
+import {AuthContext} from './src/LoginScreen/context';
+import SplashScreen from './src/LoginScreen/SplashScreen';
+import SignInScreen from './src/LoginScreen/SignInScreen';
 import {IN4_USER} from './server/ConnectServer/In4User';
+import Player from './src/Components/SoundComponents/Player';
+
+export const TRACKS = [
+  {
+    title: 'Stressed Out',
+    artist: 'Twenty One Pilots',
+    albumArtUrl:
+      'http://36.media.tumblr.com/14e9a12cd4dca7a3c3c4fe178b607d27/tumblr_nlott6SmIh1ta3rfmo1_1280.jpg',
+    audioUrl:
+      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/Reality%20%20-%20%20Lost%20%20Frequencies.mp3?alt=media&token=8a8797b1-6e45-4499-bbd8-f2891400e3fb',
+  },
+  {
+    title: 'Love Yourself',
+    artist: 'Justin Bieber',
+    albumArtUrl:
+      'http://arrestedmotion.com/wp-content/uploads/2015/10/JB_Purpose-digital-deluxe-album-cover_lr.jpg',
+    audioUrl:
+      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/Tez%20Cadey%20-%20Seve.mp3?alt=media&token=f7164b01-3a56-49db-b7cb-e2d9830923ab',
+  },
+  {
+    title: 'Hotline Bling',
+    artist: 'Drake',
+    albumArtUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/c/c9/Drake_-_Hotline_Bling.png',
+    audioUrl:
+      'https://drive.google.com/file/d/1H0c94Lm7mAGfsGf7fBLmu_my36d3YwP1/view?usp=sharinghttp://dl2.shirazsong.org/dl/music/94-10/CD%201%20-%20Best%20of%202015%20-%20Top%20Downloads/03.%20Drake%20-%20Hotline%20Bling%20.mp3',
+  },
+];
 
 const Stack = createStackNavigator();
 function HomeScreen({navigation}) {
@@ -37,6 +61,13 @@ function SettingScreen({navigation}) {
   return (
     <View style={Style.container}>
       <Setting navigation={navigation} />
+    </View>
+  );
+}
+function PlayerScreen({navigation}) {
+  return (
+    <View style={Style.container}>
+      <Player tracks={TRACKS} />
     </View>
   );
 }
@@ -205,6 +236,11 @@ const App = () => {
               <Stack.Screen
                 name="Setting"
                 component={SettingScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="onB1"
+                component={PlayerScreen}
                 options={{headerShown: false}}
               />
             </Stack.Navigator>

@@ -8,8 +8,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {Style, DIMENSION} from '../CommonStyles';
-import HeaderHome from './HomeComponents/HeaderHome';
-import HomeItem from './HomeComponents/HomeItem';
+import HeaderHome from '../Components/HomeComponents/HeaderHome';
+import HomeItem from '../Components/HomeComponents/HomeItem';
 import {IN4_APP} from '../../server/ConnectServer/In4App';
 
 export default class Home extends React.Component {
@@ -61,7 +61,7 @@ export default class Home extends React.Component {
                   // icon="book"
                   title={item.name}
                   navigation={navigation}
-                  desComponent="Setting"
+                  desComponent="onB1"
                 />
               )}
               keyExtractor={(item) => `${item.id}`}

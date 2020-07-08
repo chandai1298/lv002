@@ -4,7 +4,7 @@ import HeaderComponent from './HeaderComponent';
 import OverviewSettingComponent from '../Components/SettingComponents/OverviewSettingComponent';
 import NotiComponent from '../Components/SettingComponents/NotiComponent';
 import In4Component from '../Components/SettingComponents/In4Component';
-import {AuthContext} from '../Components/LoginComponents/context';
+import {AuthContext} from '../LoginScreen/context';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Setting = ({navigation}) => {
