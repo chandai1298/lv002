@@ -21,7 +21,10 @@ import SplashScreen from './src/LoginScreen/SplashScreen';
 import SignInScreen from './src/LoginScreen/SignInScreen';
 import {IN4_USER} from './server/ConnectServer/In4User';
 import Player from './src/Components/SoundComponents/Player';
-
+import Dictionary from './src/Apps/LearningScreen/Dictionary';
+import Translator from './src/Apps/LearningScreen/Translator';
+import Toeic from './src/Apps/LearningScreen/Toeic';
+import Evaluation from './src/Apps/LearningScreen/Evaluation';
 export const TRACKS = [
   {
     title: 'Stressed Out',
@@ -68,6 +71,34 @@ function PlayerScreen({navigation}) {
   return (
     <View style={Style.container}>
       <Player tracks={TRACKS} />
+    </View>
+  );
+}
+function DictionaryScreen({navigation}) {
+  return (
+    <View style={Style.container}>
+      <Dictionary />
+    </View>
+  );
+}
+function TranslatorScreen({navigation}) {
+  return (
+    <View style={Style.container}>
+      <Translator />
+    </View>
+  );
+}
+function ToeicScreen({navigation}) {
+  return (
+    <View style={Style.container}>
+      <Toeic />
+    </View>
+  );
+}
+function EvaluationScreen({navigation}) {
+  return (
+    <View style={Style.container}>
+      <Evaluation />
     </View>
   );
 }
@@ -241,6 +272,26 @@ const App = () => {
               <Stack.Screen
                 name="onB1"
                 component={PlayerScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="dictionary"
+                component={DictionaryScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="translator"
+                component={TranslatorScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="onTOEIC"
+                component={ToeicScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="testEvaluation"
+                component={EvaluationScreen}
                 options={{headerShown: false}}
               />
             </Stack.Navigator>

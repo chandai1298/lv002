@@ -6,7 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const DATA = [
   {
     label: 'bạn bè',
-    icon: 'seedling',
+    icon: 'user-friends',
     num: 16,
     colorIcon: '#79c615',
   },

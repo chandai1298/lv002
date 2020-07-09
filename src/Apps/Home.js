@@ -61,7 +61,7 @@ export default class Home extends React.Component {
                   // icon="book"
                   title={item.name}
                   navigation={navigation}
-                  desComponent="onB1"
+                  desComponent={item.link}
                 />
               )}
               keyExtractor={(item) => `${item.id}`}
