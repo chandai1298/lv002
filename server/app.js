@@ -25,12 +25,30 @@ con.connect(function (error) {
   else console.log('connected');
 });
 // Information APP
+//du lieu Home
 app.get('/getDataApp_Home', function (req, res) {
   con.query('select * from category', function (error, rows, fields) {
     if (error) console.log(error);
     else {
       console.log(rows);
       res.send(rows);
+    }
+  });
+});
+// du lieu config
+app.post('/getConfig', function (req, res) {
+  var user = req.body;
+  var query =
+    "select * from overview where id_user='" +
+    user.id_user +
+    "' and type='" +
+    user.type +
+    "'";
+  con.query(query, [user.id_user, user.type], (err, rows, fields) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      console.log(err);
     }
   });
 });
@@ -62,6 +80,7 @@ app.post('/sendData', function (req, res) {
     }
   });
 });
+
 app.post('/checkLogin', function (req, res) {
   var user = req.body;
   //   var query = "CALL login ('" + user.username + "','" + user.password + "')";

@@ -1,44 +1,51 @@
 import React, {useEffect} from 'react';
-import {Text, View, FlatList} from 'react-native';
+import {Text, View} from 'react-native';
 import {Style, SettingStyle} from '../../CommonStyles';
 import SwitchComponent from './SwitchComponent';
+import {IN4_APP} from '../../../server/ConnectServer/In4App';
 
-const NotiComponent = ({userData}) => {
-  const [data, setData] = React.useState({
-    label: '',
-    switchValue: '',
-  });
+const NotiComponent = ({getId}) => {
+  const [data, setData] = React.useState([
+    {id: '', id_user: '', title: '', status: '', status2: '', isActive: ''},
+  ]);
+
+  //config
+  const getDataConfig = (userId) => {
+    const url = IN4_APP.getConfig;
+    fetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id_user: userId,
+        type: '2',
+      }),
+    })
+      .then((res) => res.json())
+      .then((results) => {
+        setData(results);
+      })
+      .catch((err) => {
+        console.log('err', err);
+      });
+  };
 
   useEffect(() => {
-    setData(userData);
+    getDataConfig(getId);
   });
-
+  const listConfig = () => {
+    return data.map((data) => {
+      return (
+        <View style={SettingStyle.flexDirectionRow} key={data.id}>
+          <Text>{data.title}</Text>
+          <SwitchComponent switchValue={Boolean(data.status)} />
+        </View>
+      );
+    });
+  };
   return (
     <View style={[SettingStyle.sectionIn4, {paddingBottom: 100}]}>
       <Text style={Style.text18}>Thông báo</Text>
-
-      <View>
-        <View style={SettingStyle.flexDirectionRow}>
-          <Text>{data.label}</Text>
-          <SwitchComponent switchValue={data.switchValue} />
-        </View>
-        <View style={SettingStyle.flexDirectionRow}>
-          <Text>{data.label}</Text>
-          <SwitchComponent switchValue={data.switchValue} />
-        </View>
-        <View style={SettingStyle.flexDirectionRow}>
-          <Text>{data.label}</Text>
-          <SwitchComponent switchValue={data.switchValue} />
-        </View>
-        <View style={SettingStyle.flexDirectionRow}>
-          <Text>{data.label}</Text>
-          <SwitchComponent switchValue={data.switchValue} />
-        </View>
-        <View style={SettingStyle.flexDirectionRow}>
-          <Text>{data.label}</Text>
-          <SwitchComponent switchValue={data.switchValue} />
-        </View>
-      </View>
+      {listConfig()}
     </View>
   );
 };

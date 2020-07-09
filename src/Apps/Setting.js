@@ -8,7 +8,7 @@ import {AuthContext} from '../LoginScreen/context';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Setting = ({navigation}) => {
-  const {signOut, toggleTheme} = React.useContext(AuthContext);
+  const {signOut} = React.useContext(AuthContext);
   const [data, setData] = React.useState([
     {
       id: '',
@@ -22,16 +22,19 @@ const Setting = ({navigation}) => {
     },
   ]);
 
-  useEffect(() => {
-    showData();
-  }, []);
-
+  // in4 component
   const showData = async () => {
     let user = await AsyncStorage.getItem('user');
     let parsed = JSON.parse(user);
     setData(parsed);
   };
-  const userData = data[0];
+
+  const dataUser = data[0];
+
+  useEffect(() => {
+    showData();
+  }, []);
+
   return (
     <View>
       <HeaderComponent
@@ -40,12 +43,11 @@ const Setting = ({navigation}) => {
         navigation={navigation}
         desComponent="Home"
       />
-
       <ScrollView horizontal={false}>
-        <In4Component userData={userData} />
+        <In4Component userData={dataUser} />
         <Button title="logout" onPress={() => signOut()} />
-        <OverviewSettingComponent userData={userData} />
-        <NotiComponent userData={userData} />
+        <OverviewSettingComponent getId={dataUser.id} />
+        <NotiComponent getId={dataUser.id} />
       </ScrollView>
     </View>
   );

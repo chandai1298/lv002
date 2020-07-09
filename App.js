@@ -29,7 +29,7 @@ export const TRACKS = [
     albumArtUrl:
       'http://36.media.tumblr.com/14e9a12cd4dca7a3c3c4fe178b607d27/tumblr_nlott6SmIh1ta3rfmo1_1280.jpg',
     audioUrl:
-      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/Reality%20%20-%20%20Lost%20%20Frequencies.mp3?alt=media&token=8a8797b1-6e45-4499-bbd8-f2891400e3fb',
+      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/y2mate.com%20-%20Send%20My%20Love%20%20Sit%20Still%2C%20Look%20Pretty%20(Acoustic%20Mashup)%20-%20Landon%20Austin%20and%20Kaya%20May_T1cugr4N-dY.mp3?alt=media&token=a0251baa-cc63-4747-9246-0c8ba8e0330c',
   },
   {
     title: 'Love Yourself',
@@ -37,7 +37,7 @@ export const TRACKS = [
     albumArtUrl:
       'http://arrestedmotion.com/wp-content/uploads/2015/10/JB_Purpose-digital-deluxe-album-cover_lr.jpg',
     audioUrl:
-      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/Tez%20Cadey%20-%20Seve.mp3?alt=media&token=f7164b01-3a56-49db-b7cb-e2d9830923ab',
+      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/Reality%20%20-%20%20Lost%20%20Frequencies.mp3?alt=media&token=8a8797b1-6e45-4499-bbd8-f2891400e3fb',
   },
   {
     title: 'Hotline Bling',
@@ -45,7 +45,7 @@ export const TRACKS = [
     albumArtUrl:
       'https://upload.wikimedia.org/wikipedia/commons/c/c9/Drake_-_Hotline_Bling.png',
     audioUrl:
-      'https://drive.google.com/file/d/1H0c94Lm7mAGfsGf7fBLmu_my36d3YwP1/view?usp=sharinghttp://dl2.shirazsong.org/dl/music/94-10/CD%201%20-%20Best%20of%202015%20-%20Top%20Downloads/03.%20Drake%20-%20Hotline%20Bling%20.mp3',
+      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/y2mate.com%20-%20Send%20My%20Love%20%20Sit%20Still%2C%20Look%20Pretty%20(Acoustic%20Mashup)%20-%20Landon%20Austin%20and%20Kaya%20May_T1cugr4N-dY.mp3?alt=media&token=a0251baa-cc63-4747-9246-0c8ba8e0330c',
   },
 ];
 
@@ -252,3 +252,26 @@ const App = () => {
 };
 
 export default App;
+// export default App = () => {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator>
+//         <Stack.Screen
+//           name="Home"
+//           component={HomeScreen}
+//           options={{headerShown: false}}
+//         />
+//         <Stack.Screen
+//           name="Setting"
+//           component={SettingScreen}
+//           options={{headerShown: false}}
+//         />
+//         <Stack.Screen
+//           name="onB1"
+//           component={PlayerScreen}
+//           options={{headerShown: false}}
+//         />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// };
