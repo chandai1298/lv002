@@ -81,6 +81,8 @@ target 'applv_002' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'TextToSpeech', :path => '../node_modules/react-native-tts'
+
   target 'applv_002Tests' do
     inherit! :complete
     # Pods for testing
