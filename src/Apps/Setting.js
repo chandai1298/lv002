@@ -6,7 +6,7 @@ import In4Component from '../Components/SettingComponents/In4Component';
 import {AuthContext} from '../LoginScreen/context';
 import AsyncStorage from '@react-native-community/async-storage';
 import {SettingStyle} from '../CommonStyles';
-import Alo from '../Components/SettingComponents/Alo';
+
 const Setting = ({navigation}) => {
   const {signOut} = React.useContext(AuthContext);
   const [data, setData] = React.useState([
@@ -44,7 +44,11 @@ const Setting = ({navigation}) => {
         desComponent="Home"
       />
       <ScrollView horizontal={false}>
-        <In4Component userData={dataUser} />
+        <In4Component
+          userData={dataUser}
+          navigation={navigation}
+          desNav="changePassword"
+        />
         <Button title="logout" onPress={() => signOut()} />
         <SettingComponent
           style={[SettingStyle.sectionIn4]}

@@ -25,6 +25,7 @@ import Dictionary from './src/Apps/LearningScreen/Dictionary';
 import Translator from './src/Apps/LearningScreen/Translator';
 import Toeic from './src/Apps/LearningScreen/Toeic';
 import Evaluation from './src/Apps/LearningScreen/Evaluation';
+import ChangePassword from './src/Components/SettingComponents/ChangePassword';
 export const TRACKS = [
   {
     title: 'Stressed Out',
@@ -99,6 +100,13 @@ function EvaluationScreen({navigation}) {
   return (
     <View style={Style.container}>
       <Evaluation />
+    </View>
+  );
+}
+function ChangePasswordScreen({navigation}) {
+  return (
+    <View style={Style.container}>
+      <ChangePassword navigation={navigation} />
     </View>
   );
 }
@@ -267,6 +275,11 @@ const App = () => {
               <Stack.Screen
                 name="Setting"
                 component={SettingScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="changePassword"
+                component={ChangePasswordScreen}
                 options={{headerShown: false}}
               />
               <Stack.Screen

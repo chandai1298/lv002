@@ -117,7 +117,10 @@ export default class Avatar extends Component {
         <View
           style={[ProfileStyle.SectionAvtRight, {justifyContent: 'center'}]}>
           <Image
-            source={{uri: 'https://via.placeholder.com/150/92c952'}}
+            source={{
+              uri:
+                'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/B71D1D97-9FF3-444A-B7F3-E1CAC41A8BAE.jpg?alt=media&token=2087bb6f-4b1a-451e-8deb-d8948fefb651',
+            }}
             // source={{uri: image}}
             style={Style.images}
           />

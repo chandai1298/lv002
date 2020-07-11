@@ -34,5 +34,20 @@ const SettingStyle = StyleSheet.create({
     marginBottom: 5,
     padding: 10,
   },
+  viewChangPassword: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: '15%',
+    paddingRight: '15%',
+  },
+  btnChangPassword: {
+    width: '45%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderRadius: 5,
+  },
 });
 export {SettingStyle};

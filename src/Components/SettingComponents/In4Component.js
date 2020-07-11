@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image, TextInput} from 'react-native';
+import {View, Text, Image, TextInput, Alert} from 'react-native';
 import {Style, SettingStyle} from '../../CommonStyles';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Avatar = ({image}) => (
   <View style={Style.coverCenter}>
@@ -16,7 +17,7 @@ const Avatar = ({image}) => (
     <Text style={Style.text15}>Thay ảnh đại diện</Text>
   </View>
 );
-function Item({username, pass, name, email, image}) {
+function Item({username, name, email, image, navigation, desNav}) {
   return (
     <View>
       <Avatar image={image} />
@@ -26,7 +27,11 @@ function Item({username, pass, name, email, image}) {
       </View>
       <View>
         <Text>Mật khẩu</Text>
-        <TextInput style={Style.input} secureTextEntry={true} value={pass} />
+        <TouchableOpacity
+          style={[Style.input, {justifyContent: 'center'}]}
+          onPress={() => navigation.navigate(desNav)}>
+          <Text>*****</Text>
+        </TouchableOpacity>
       </View>
       <View>
         <Text>Tên</Text>
@@ -39,7 +44,7 @@ function Item({username, pass, name, email, image}) {
     </View>
   );
 }
-const In4Component = ({userData}) => {
+const In4Component = ({userData, navigation, desNav}) => {
   const [data, setData] = React.useState({
     id: '',
     username: '',
@@ -63,6 +68,8 @@ const In4Component = ({userData}) => {
         pass={data.password}
         name={data.name}
         email={data.email}
+        navigation={navigation}
+        desNav={desNav}
       />
     </View>
   );
