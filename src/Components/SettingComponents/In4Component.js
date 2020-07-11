@@ -56,7 +56,6 @@ const In4Component = ({userData}) => {
   });
   return (
     <View style={SettingStyle.sectionIn4}>
-      {console.log(data.username)}
       <Text style={Style.text18}> Hồ sơ của bạn</Text>
       <Item
         image={data.avatar}

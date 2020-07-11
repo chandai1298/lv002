@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, ScrollView, Button} from 'react-native';
 import HeaderComponent from './HeaderComponent';
-import OverviewSettingComponent from '../Components/SettingComponents/OverviewSettingComponent';
-import NotiComponent from '../Components/SettingComponents/NotiComponent';
+import SettingComponent from '../Components/SettingComponents/SettingComponent';
 import In4Component from '../Components/SettingComponents/In4Component';
 import {AuthContext} from '../LoginScreen/context';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import {SettingStyle} from '../CommonStyles';
+import Alo from '../Components/SettingComponents/Alo';
 const Setting = ({navigation}) => {
   const {signOut} = React.useContext(AuthContext);
   const [data, setData] = React.useState([
@@ -46,8 +46,18 @@ const Setting = ({navigation}) => {
       <ScrollView horizontal={false}>
         <In4Component userData={dataUser} />
         <Button title="logout" onPress={() => signOut()} />
-        <OverviewSettingComponent getId={dataUser.id} />
-        <NotiComponent getId={dataUser.id} />
+        <SettingComponent
+          style={[SettingStyle.sectionIn4]}
+          getId={dataUser.id}
+          type="1"
+          title="Tổng quan"
+        />
+        <SettingComponent
+          style={[SettingStyle.sectionIn4, {paddingBottom: 100}]}
+          getId={dataUser.id}
+          type="2"
+          title="Thông báo"
+        />
       </ScrollView>
     </View>
   );

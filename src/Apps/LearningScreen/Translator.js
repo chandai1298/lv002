@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {
   PowerTranslator,
   ProviderTypes,
@@ -21,38 +21,45 @@ import Languages from '../../Assets/txt/languages.json';
 import SpeechAndroid from 'react-native-android-voice';
 import {Picker} from '@react-native-community/picker';
 
-export default class Translator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      languageFrom: '',
-      languageTo: '',
-      languageCode: 'en',
-      inputText: '',
-      outputText: '',
-      submit: false,
-      micOn: false,
-    };
-    this._buttonClick = this._buttonClick.bind(this);
-  }
-  handleTranslate = () => {
-    this.setState({submit: true});
+const Translator = () => {
+  const [languageTo, setLanguageTo] = React.useState('');
+  const [languageCode, setLanguageCode] = React.useState('en');
+  const [micOn, setMicOn] = React.useState(false);
+  const [inputText, onChangeInputText] = React.useState('');
+  const [outputText, onChangeOutputText] = React.useState('');
+
+  useEffect(() => {
+    TranslatorConfiguration.setConfig(
+      ProviderTypes.Google,
+      'AIzaSyBTXr7MqVz0OXJadyLXaKPkLIf2ik3hukk',
+      languageCode,
+    );
+  });
+
+  // const handleTranslate = () => {
+  //   const translator = TranslatorFactory.createTranslator();
+  //   translator.translate(inputText).then((translated) => {
+  //     Tts.getInitStatus().then(() => {
+  //       Tts.speak(translated);
+  //     });
+  //     Tts.stop();
+  //   });
+  // };
+  const translate = () => {
     const translator = TranslatorFactory.createTranslator();
-    translator.translate(this.state.inputText).then((translated) => {
-      Tts.getInitStatus().then(() => {
-        Tts.speak(translated);
-      });
-      Tts.stop();
+    translator.translate(inputText).then((translated) => {
+      onChangeOutputText(translated);
     });
   };
-  async _buttonClick() {
-    await this.setState({micOn: true});
+
+  const _OnMic = async () => {
+    await setMicOn(true);
     try {
       var spokenText = await SpeechAndroid.startSpeech(
         '',
         SpeechAndroid.DEFAULT,
       );
-      await this.setState({inputText: spokenText});
+      await onChangeInputText(spokenText);
       await ToastAndroid.show(spokenText, ToastAndroid.LONG);
     } catch (error) {
       switch (error) {
@@ -67,58 +74,52 @@ export default class Translator extends Component {
           break;
       }
     }
-    this.setState({micOn: false});
-  }
-
-  render() {
-    TranslatorConfiguration.setConfig(
-      ProviderTypes.Google,
-      'AIzaSyBTXr7MqVz0OXJadyLXaKPkLIf2ik3hukk',
-      this.state.languageCode,
-    );
-    return (
-      <View style={styles.container}>
-        <View style={styles.input}>
-          <TextInput
-            style={{flex: 1, height: 80}}
-            placeholder="Enter Text"
-            underlineColorAndroid="transparent"
-            onChangeText={(inputText) => this.setState({inputText})}
-            value={this.state.inputText}
-          />
-          <TouchableOpacity onPress={this._buttonClick}>
-            {this.state.micOn ? (
-              <Icon size={30} name="md-mic" style={styles.ImageStyle} />
-            ) : (
-              <Icon size={30} name="md-mic-off" style={styles.ImageStyle} />
-            )}
-          </TouchableOpacity>
-        </View>
-
-        <Picker
-          selectedValue={this.state.languageTo}
-          onValueChange={(lang) =>
-            this.setState({languageTo: lang, languageCode: lang})
-          }>
-          {Object.keys(Languages).map((key) => (
-            <Picker.Item key={key} label={Languages[key]} value={key} />
-          ))}
-        </Picker>
-
-        <View style={styles.output}>
-          {this.state.submit && <PowerTranslator text={this.state.inputText} />}
-          {/* onTranslationEnd={this.textToSpeech} */}
-        </View>
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={this.handleTranslate}>
-          <Text style={styles.submitButtonText}> Submit </Text>
+    setMicOn(false);
+  };
+  return (
+    <View style={styles.container}>
+      <View style={styles.input}>
+        <TextInput
+          style={{flex: 1, height: 80}}
+          placeholder="Enter Text"
+          underlineColorAndroid="transparent"
+          onChangeText={(inputText) =>
+            onChangeInputText(inputText, translate())
+          }
+          value={inputText}
+        />
+        <TouchableOpacity onPress={() => _OnMic()}>
+          {micOn ? (
+            <Icon size={30} name="md-mic" style={styles.ImageStyle} />
+          ) : (
+            <Icon size={30} name="md-mic-off" style={styles.ImageStyle} />
+          )}
         </TouchableOpacity>
       </View>
-    );
-  }
-}
 
+      <Picker
+        selectedValue={languageTo}
+        onValueChange={(lang) => {
+          setLanguageTo(lang), setLanguageCode(lang);
+        }}>
+        {Object.keys(Languages).map((key) => (
+          <Picker.Item key={key} label={Languages[key]} value={key} />
+        ))}
+      </Picker>
+
+      <View style={styles.output}>
+        {/* onTranslationEnd={this.textToSpeech} */}
+        <Text>{outputText}</Text>
+      </View>
+      {/* <TouchableOpacity
+        style={styles.submitButton}
+        onPress={() => handleTranslate()}>
+        <Text style={styles.submitButtonText}> Submit </Text>
+      </TouchableOpacity> */}
+    </View>
+  );
+};
+export default Translator;
 const styles = StyleSheet.create({
   container: {
     paddingTop: 53,

@@ -52,6 +52,16 @@ app.post('/getConfig', function (req, res) {
     }
   });
 });
+app.get('/getConfig', function (req, res) {
+  var query = "select * from overview where id_user='1'";
+  con.query(query, (err, rows, fields) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      console.log(err);
+    }
+  });
+});
 
 // Information USER
 app.get('/getData', function (req, res) {
