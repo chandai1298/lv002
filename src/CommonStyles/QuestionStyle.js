@@ -19,6 +19,15 @@ const QuestionStyle = StyleSheet.create({
     marginLeft: 3,
     fontSize: 15,
   },
+  sectionAnswer: {
+    flex: 4,
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: '100%',
+  },
   tchAnswer: {
     borderColor: 'gray',
     borderWidth: 1,

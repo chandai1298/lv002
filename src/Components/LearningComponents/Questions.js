@@ -7,7 +7,10 @@ import HeaderQuestion from './HeaderQuestion';
 const SectionQuestion = ({question}) => {
   return (
     <View style={{flex: 4}}>
-      <Text style={[Style.text18, {marginBottom: 10}]}>{question.title}</Text>
+      <Text style={[Style.text18, {marginBottom: 10}]}>
+        {question.title}
+        {question.id_title}
+      </Text>
 
       <Text>{JSON.stringify(question.question)}</Text>
     </View>
@@ -16,24 +19,10 @@ const SectionQuestion = ({question}) => {
 const SectionAnswer = ({question}) => {
   var string = question.detail_question;
   var arr = string.split(' ');
-  console.log(arr);
   return (
-    <View
-      style={{
-        flex: 4,
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignContent: 'center',
-        width: '100%',
-      }}>
+    <View style={QuestionStyle.sectionAnswer}>
       {arr.map((item, key) => (
-        <TouchableOpacity
-          key={key}
-          style={QuestionStyle.tchAnswer}
-          //   onPress={this.SampleFunction.bind(this, item)}
-        >
+        <TouchableOpacity key={key} style={QuestionStyle.tchAnswer}>
           <Text>{item}</Text>
         </TouchableOpacity>
       ))}
