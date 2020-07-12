@@ -52,8 +52,11 @@ app.post('/getConfig', function (req, res) {
     }
   });
 });
-app.get('/getConfig', function (req, res) {
-  var query = "select * from overview where id_user='1'";
+app.get('/getEvaluation', function (req, res) {
+  var query =
+    'select q.id_title,q.question,q.detail_question,q.answer,t.title,q.image,q.sound\
+  from question as q,lession as l,category as c,title as t\
+  WHERE c.id=l.id_category and l.id=q.id_lession and c.id=5 and t.id=q.id_title';
   con.query(query, (err, rows, fields) => {
     if (!err) {
       res.send(rows);

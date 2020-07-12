@@ -96,10 +96,10 @@ function ToeicScreen({navigation}) {
     </View>
   );
 }
-function EvaluationScreen({navigation}) {
+function EvaluationScreen({route, navigation}) {
   return (
     <View style={Style.container}>
-      <Evaluation />
+      <Evaluation navigation={navigation} route={route} />
     </View>
   );
 }
@@ -306,6 +306,7 @@ const App = () => {
                 name="testEvaluation"
                 component={EvaluationScreen}
                 options={{headerShown: false}}
+                initialParams={{count: 0}}
               />
             </Stack.Navigator>
           )}
@@ -316,24 +317,15 @@ const App = () => {
 };
 
 export default App;
-// export default App = () => {
+// export default App2 = () => {
 //   return (
 //     <NavigationContainer>
 //       <Stack.Navigator>
 //         <Stack.Screen
 //           name="Home"
-//           component={HomeScreen}
+//           component={EvaluationScreen}
 //           options={{headerShown: false}}
-//         />
-//         <Stack.Screen
-//           name="Setting"
-//           component={SettingScreen}
-//           options={{headerShown: false}}
-//         />
-//         <Stack.Screen
-//           name="onB1"
-//           component={PlayerScreen}
-//           options={{headerShown: false}}
+//           initialParams={{count: 0}}
 //         />
 //       </Stack.Navigator>
 //     </NavigationContainer>
