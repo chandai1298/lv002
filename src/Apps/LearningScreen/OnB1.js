@@ -4,7 +4,7 @@ import {IN4_APP} from '../../../server/ConnectServer/In4App';
 import {LearningStyle, Style, DIMENSION} from '../../CommonStyles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Toeic = ({route, navigation}) => {
+const OnB1 = ({route, navigation}) => {
   const {id_category} = route.params;
   const idCategory = parseInt(JSON.stringify(id_category));
   const [data, setData] = React.useState([
@@ -61,7 +61,9 @@ const Toeic = ({route, navigation}) => {
         <TouchableOpacity
           key={key}
           style={LearningStyle.tchLession}
-          onPress={() => navigation.navigate(item.link)}>
+          onPress={() =>
+            navigation.navigate(item.link, {id_category: item.id_category})
+          }>
           <MaterialCommunityIcons
             name={getIcon(item.name)}
             size={DIMENSION.sizeIconSmall}
@@ -73,4 +75,4 @@ const Toeic = ({route, navigation}) => {
     </View>
   );
 };
-export default Toeic;
+export default OnB1;

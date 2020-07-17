@@ -24,6 +24,7 @@ import Player from './src/Components/SoundComponents/Player';
 import Dictionary from './src/Apps/LearningScreen/Dictionary';
 import Translator from './src/Apps/LearningScreen/Translator';
 import Toeic from './src/Apps/LearningScreen/Toeic';
+import OnB1 from './src/Apps/LearningScreen/OnB1';
 import Evaluation from './src/Apps/LearningScreen/Evaluation';
 import ChangePassword from './src/Components/SettingComponents/ChangePassword';
 export const TRACKS = [
@@ -75,10 +76,10 @@ function PlayerScreen({navigation}) {
     </View>
   );
 }
-function DictionaryScreen({navigation}) {
+function DictionaryScreen({route, navigation}) {
   return (
     <View style={Style.container}>
-      <Dictionary />
+      <Dictionary navigation={navigation} route={route} />
     </View>
   );
 }
@@ -89,10 +90,17 @@ function TranslatorScreen({navigation}) {
     </View>
   );
 }
-function ToeicScreen({navigation}) {
+function ToeicScreen({route, navigation}) {
   return (
     <View style={Style.container}>
-      <Toeic />
+      <Toeic navigation={navigation} route={route} />
+    </View>
+  );
+}
+function OnB1Screen({route, navigation}) {
+  return (
+    <View style={Style.container}>
+      <OnB1 navigation={navigation} route={route} />
     </View>
   );
 }
@@ -283,30 +291,35 @@ const App = () => {
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name="onB1"
-                component={PlayerScreen}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
                 name="dictionary"
                 component={DictionaryScreen}
-                options={{headerShown: false}}
+                options={{title: 'Từ điển Anh-Việt'}}
               />
               <Stack.Screen
                 name="translator"
                 component={TranslatorScreen}
-                options={{headerShown: false}}
+                options={{title: 'Dịch văn bản'}}
               />
               <Stack.Screen
                 name="onTOEIC"
                 component={ToeicScreen}
+                options={{title: 'TOEIC-4 kỹ năng'}}
+              />
+              <Stack.Screen
+                name="toeic_listening"
+                component={PlayerScreen}
                 options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="onB1"
+                component={OnB1Screen}
+                options={{title: 'Ôn B1 ĐHNL TPHCM'}}
               />
               <Stack.Screen
                 name="testEvaluation"
                 component={EvaluationScreen}
                 options={{headerShown: false}}
-                initialParams={{count: 0}}
+                initialParams={{count: 0, score: 0, crown: 5, totalLength: 0}}
               />
             </Stack.Navigator>
           )}

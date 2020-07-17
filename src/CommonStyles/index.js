@@ -5,3 +5,4 @@ export {ProfileStyle} from './ProfileStyle';
 export {SettingStyle} from './SettingStyle';
 export {HomeStyle} from './HomeStyle';
 export {QuestionStyle} from './QuestionStyle';
+export {LearningStyle} from './LearningStyle';

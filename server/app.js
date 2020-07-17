@@ -52,12 +52,32 @@ app.post('/getConfig', function (req, res) {
     }
   });
 });
-app.get('/getEvaluation', function (req, res) {
+//du lieu cac cau hoi
+app.post('/getQuestion', function (req, res) {
+  var category = req.body;
   var query =
-    'select q.id_title,q.question,q.detail_question,q.answer,t.title,q.image,q.sound\
+    'select q.id_title,q.question,q.detail_question,q.answer,t.title,q.image,q.sound,q.id\
   from question as q,lession as l,category as c,title as t\
-  WHERE c.id=l.id_category and l.id=q.id_lession and c.id=5 and t.id=q.id_title';
-  con.query(query, (err, rows, fields) => {
+  WHERE c.id=l.id_category and l.id=q.id_lession and c.id=' +
+    category.id +
+    ' and t.id=q.id_title ORDER BY RAND() LIMIT 8';
+  con.query(query, [category.id], (err, rows, fields) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      console.log(err);
+    }
+  });
+});
+//du lieu cac cau hoi
+app.post('/getLession', function (req, res) {
+  var category = req.body;
+  var query =
+    'select l.id, l.id_category, l.link, l.name from lession l JOIN category c on l.id_category = c.id where c.id=' +
+    category.id +
+    ' and c.isActive=1 and l.isActive=1';
+
+  con.query(query, [category.id], (err, rows, fields) => {
     if (!err) {
       res.send(rows);
     } else {

@@ -58,7 +58,7 @@ export default class Home extends React.Component {
               data={data}
               renderItem={({item}) => (
                 <HomeItem
-                  // icon="book"
+                  id_category={item.id}
                   title={item.name}
                   navigation={navigation}
                   desComponent={item.link}
