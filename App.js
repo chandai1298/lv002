@@ -25,6 +25,8 @@ import Dictionary from './src/Apps/LearningScreen/Dictionary';
 import Translator from './src/Apps/LearningScreen/Translator';
 import Toeic from './src/Apps/LearningScreen/Toeic';
 import OnB1 from './src/Apps/LearningScreen/OnB1';
+import Part from './src/Components/LearningComponents/Part';
+import PartDetail from './src/Components/LearningComponents/PartDetail';
 import Evaluation from './src/Apps/LearningScreen/Evaluation';
 import ChangePassword from './src/Components/SettingComponents/ChangePassword';
 export const TRACKS = [
@@ -101,6 +103,20 @@ function OnB1Screen({route, navigation}) {
   return (
     <View style={Style.container}>
       <OnB1 navigation={navigation} route={route} />
+    </View>
+  );
+}
+function PartScreen({route, navigation}) {
+  return (
+    <View style={Style.container}>
+      <Part navigation={navigation} route={route} />
+    </View>
+  );
+}
+function PartDetailScreen({route, navigation}) {
+  return (
+    <View style={Style.container}>
+      <PartDetail navigation={navigation} route={route} />
     </View>
   );
 }
@@ -316,6 +332,17 @@ const App = () => {
                 options={{title: 'Ôn B1 ĐHNL TPHCM'}}
               />
               <Stack.Screen
+                name="part"
+                component={PartScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="partDetail"
+                component={PartDetailScreen}
+                options={{headerShown: false}}
+                initialParams={{count: 0, score: 0, crown: 5, totalLength: 0}}
+              />
+              <Stack.Screen
                 name="testEvaluation"
                 component={EvaluationScreen}
                 options={{headerShown: false}}
@@ -336,9 +363,8 @@ export default App;
 //       <Stack.Navigator>
 //         <Stack.Screen
 //           name="Home"
-//           component={EvaluationScreen}
+//           component={PartDetailScreen}
 //           options={{headerShown: false}}
-//           initialParams={{count: 0}}
 //         />
 //       </Stack.Navigator>
 //     </NavigationContainer>

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, StatusBar, Text, Image} from 'react-native';
 import {Style, ProfileStyle, DIMENSION} from '../CommonStyles';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import HeaderComponent from './HeaderComponent';
@@ -42,6 +42,8 @@ const Profile = ({title, navigation, icon, desComponent}) => {
   const userData = data[0];
   return (
     <View style={Style.container}>
+      <StatusBar hidden={true} />
+
       <HeaderComponent
         title={title}
         icon={icon}

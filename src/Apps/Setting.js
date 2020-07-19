@@ -49,7 +49,7 @@ const Setting = ({navigation}) => {
           navigation={navigation}
           desNav="changePassword"
         />
-        <Button title="logout" onPress={() => signOut()} />
+        <Button title="Đăng xuất" onPress={() => signOut()} />
         <SettingComponent
           style={[SettingStyle.sectionIn4]}
           getId={dataUser.id}

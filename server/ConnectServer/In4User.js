@@ -1,5 +1,5 @@
 const URL_NGROK = {
-  url: 'http://b0adb38adfec.ngrok.io',
+  url: 'http://500ce2d4be19.ngrok.io',
 };
 const IN4_USER = {
   getUser: `${URL_NGROK.url}/checkLogin`,

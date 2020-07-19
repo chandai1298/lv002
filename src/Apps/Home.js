@@ -46,7 +46,7 @@ export default class Home extends React.Component {
     let {icon1, icon2, icon3, icon4, navigation} = this.props;
     return (
       <View style={{flex: 1}}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" hidden={true} />
         <HeaderHome icon1={icon1} icon2={icon2} icon3={icon3} icon4={icon4} />
 
         <View style={Style.coverCenter}>

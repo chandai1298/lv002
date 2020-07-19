@@ -1,11 +1,13 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, StatusBar, ScrollView} from 'react-native';
 import HeaderComponent from './HeaderComponent';
 
 const Rank = ({title, icon, navigation, desComponent}) => {
   return (
     <View>
       {/* Header  */}
+      <StatusBar hidden={true} />
+
       <HeaderComponent
         title={title}
         icon={icon}

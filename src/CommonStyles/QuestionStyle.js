@@ -42,7 +42,7 @@ const QuestionStyle = StyleSheet.create({
   },
   tchAnswer2: {
     borderColor: '#ebebeb',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',

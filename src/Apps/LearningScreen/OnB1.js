@@ -32,43 +32,24 @@ const OnB1 = ({route, navigation}) => {
         console.log(err);
       });
   };
-  const getIcon = (title) => {
-    let icon = null;
-    switch (title) {
-      case 'Listening':
-        icon = 'ear-hearing';
-        break;
-      case 'Speaking':
-        icon = 'volume-high';
-        break;
-      case 'Reading':
-        icon = 'book-open-variant';
-        break;
-      case 'Writing':
-        icon = 'lead-pencil';
-        break;
-      default:
-        break;
-    }
-    return icon;
-  };
+
   useEffect(() => {
     getData();
   }, []);
+
   return (
-    <View style={Style.coverCenter}>
+    <View style={LearningStyle.container}>
       {data.map((item, key) => (
         <TouchableOpacity
           key={key}
           style={LearningStyle.tchLession}
           onPress={() =>
-            navigation.navigate(item.link, {id_category: item.id_category})
+            navigation.navigate(item.link, {
+              id_category: item.id_category,
+              id_lession: item.id,
+              nameLession: `${item.name}`,
+            })
           }>
-          <MaterialCommunityIcons
-            name={getIcon(item.name)}
-            size={DIMENSION.sizeIconSmall}
-            color="#fff"
-          />
           <Text style={Style.text15}>{item.name}</Text>
         </TouchableOpacity>
       ))}

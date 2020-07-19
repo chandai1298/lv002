@@ -24,7 +24,6 @@ const Style = StyleSheet.create({
     fontWeight: 'bold',
   },
   line: {
-    margin: 20,
     width: DIMENSION.width,
     borderWidth: 1,
     borderColor: '#000',

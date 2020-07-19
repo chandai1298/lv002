@@ -56,12 +56,20 @@ const Toeic = ({route, navigation}) => {
     getData();
   }, []);
   return (
-    <View style={Style.coverCenter}>
+    <View style={[Style.coverCenter]}>
       {data.map((item, key) => (
         <TouchableOpacity
           key={key}
-          style={LearningStyle.tchLession}
-          onPress={() => navigation.navigate(item.link)}>
+          style={[
+            LearningStyle.tchLession,
+            {
+              width: DIMENSION.width / 3,
+              height: DIMENSION.height / 5,
+            },
+          ]}
+          onPress={() =>
+            navigation.navigate(item.link, {id_category: item.id_category})
+          }>
           <MaterialCommunityIcons
             name={getIcon(item.name)}
             size={DIMENSION.sizeIconSmall}

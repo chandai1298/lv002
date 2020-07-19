@@ -12,7 +12,7 @@ const Evaluation = ({route, navigation}) => {
   const {count, crown, score, totalLength, id_category} = route.params;
   const c = parseInt(JSON.stringify(count));
   const totalLength2 = parseInt(JSON.stringify(totalLength));
-  const idc = parseInt(JSON.stringify(id_category));
+  const idCategory = parseInt(JSON.stringify(id_category));
 
   const [data, setData] = React.useState([
     {
@@ -25,6 +25,8 @@ const Evaluation = ({route, navigation}) => {
       roleId: '',
       sound: '',
       id: '',
+      id_part: '',
+      id_lession: '',
     },
   ]);
   const getData = () => {
@@ -33,7 +35,7 @@ const Evaluation = ({route, navigation}) => {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        id: idc,
+        id: idCategory,
       }),
     })
       .then((res) => res.json())
@@ -41,7 +43,7 @@ const Evaluation = ({route, navigation}) => {
         setData(results);
       })
       .catch((err) => {
-        console.log('err', err);
+        console.log(err);
       });
   };
   useEffect(() => {
@@ -49,155 +51,147 @@ const Evaluation = ({route, navigation}) => {
   }, []);
   const question2 = data[totalLength2];
 
-  const sectionAnswer = () => {
-    var promise = null;
-    let type = question2.id_title;
+  // const sectionAnswer = () => {
+  //   var promise = null;
+  //   let type = question2.id_part;
 
-    switch (type) {
-      case 1:
-        var string = question2.detail_question;
-        var arr = string.split(' ');
-        promise = (
-          <View style={{flex: 8}}>
-            <View style={{flex: 2}}>
-              <Text style={[Style.text18, {marginBottom: 10}]}>
-                {question2.title}
-              </Text>
-              <Text>{JSON.stringify(question2.question)}</Text>
-            </View>
+  //   switch (type) {
+  //     case 1:
+  //       var string = question2.detail_question;
+  //       var arr = string.split(' ');
+  //       promise = (
+  //         <View style={{flex: 8}}>
+  //           <View style={{flex: 2}}>
+  //             <Text style={[Style.text18, {marginBottom: 10}]}>Cau hoi</Text>
+  //             <Text>{JSON.stringify(question2.question)}</Text>
+  //           </View>
 
-            <View style={QuestionStyle.sectionAnswer}>
-              <TextInput
-                style={{
-                  height: 40,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  width: '100%',
-                }}
-                onChangeText={(text) => setAnswer(text)}
-                value={answer}
-              />
-              {arr.map((item, key) => (
-                <TouchableOpacity key={key} style={QuestionStyle.tchAnswer}>
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              ))}
-              {console.log(type)}
-            </View>
-          </View>
-        );
-        break;
-      case 2:
-        var string = question2.detail_question;
-        var arr = string.split('#');
-        promise = (
-          <View style={{flex: 8}}>
-            <View style={{flex: 2}}>
-              <Text style={[Style.text18, {marginBottom: 10}]}>
-                {question2.title}
-              </Text>
-              <Text>{JSON.stringify(question2.question)}</Text>
-            </View>
+  //           <View style={QuestionStyle.sectionAnswer}>
+  //             <TextInput
+  //               style={{
+  //                 height: 40,
+  //                 borderColor: 'gray',
+  //                 borderWidth: 1,
+  //                 width: '100%',
+  //               }}
+  //               onChangeText={(text) => setAnswer(text)}
+  //               value={answer}
+  //             />
+  //             {arr.map((item, key) => (
+  //               <TouchableOpacity key={key} style={QuestionStyle.tchAnswer}>
+  //                 <Text>{item}</Text>
+  //               </TouchableOpacity>
+  //             ))}
+  //             {console.log(type)}
+  //           </View>
+  //         </View>
+  //       );
+  //       break;
+  //     case 2:
+  //       var string = question2.detail_question;
+  //       var arr = string.split('#');
+  //       promise = (
+  //         <View style={{flex: 8}}>
+  //           <View style={{flex: 2}}>
+  //             <Text style={[Style.text18, {marginBottom: 10}]}>Cau hoi</Text>
+  //             <Text>{JSON.stringify(question2.question)}</Text>
+  //           </View>
 
-            <View style={QuestionStyle.sectionAnswer}>
-              <TextInput
-                style={{
-                  height: 40,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  width: '100%',
-                }}
-                onChangeText={(text) => setAnswer(text)}
-                value={answer}
-              />
-              {arr.map((item, key) => (
-                <TouchableOpacity key={key} style={QuestionStyle.tchAnswer2}>
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              ))}
-              {console.log(type)}
-            </View>
-          </View>
-        );
-        break;
-      case 3:
-        promise = (
-          <View style={{flex: 8}}>
-            <Text style={[Style.text18, {marginBottom: 10}]}>
-              {question2.title}
-            </Text>
-            <Text>{JSON.stringify(question2.question)}</Text>
+  //           <View style={QuestionStyle.sectionAnswer}>
+  //             <TextInput
+  //               style={{
+  //                 height: 40,
+  //                 borderColor: 'gray',
+  //                 borderWidth: 1,
+  //                 width: '100%',
+  //               }}
+  //               onChangeText={(text) => setAnswer(text)}
+  //               value={answer}
+  //             />
+  //             {arr.map((item, key) => (
+  //               <TouchableOpacity key={key} style={QuestionStyle.tchAnswer2}>
+  //                 <Text>{item}</Text>
+  //               </TouchableOpacity>
+  //             ))}
+  //             {console.log(type)}
+  //           </View>
+  //         </View>
+  //       );
+  //       break;
+  //     case 3:
+  //       promise = (
+  //         <View style={{flex: 8}}>
+  //           <Text style={[Style.text18, {marginBottom: 10}]}>Cau hoi</Text>
+  //           <Text>{JSON.stringify(question2.question)}</Text>
 
-            <View
-              style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-              <TextInput
-                style={{
-                  height: 40,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  width: '100%',
-                }}
-                onChangeText={(text) => setAnswer(text)}
-                value={answer}
-              />
-              <TouchableOpacity style={QuestionStyle.tchAnswer3}>
-                <FontAwesome5
-                  name="microphone"
-                  size={DIMENSION.sizeIconBig}
-                  color="#fff"
-                />
-              </TouchableOpacity>
-              {console.log(type)}
-            </View>
-          </View>
-        );
-        break;
-      case 4:
-        var string = question2.detail_question;
-        var arr = string.split(' ');
-        promise = (
-          <View style={{flex: 8}}>
-            <View style={{flex: 2}}>
-              <Text style={[Style.text18, {marginBottom: 10}]}>
-                {question2.title}
-              </Text>
-              <View style={{alignItems: 'center'}}>
-                <TextInput
-                  style={{
-                    height: 40,
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    width: '100%',
-                  }}
-                  onChangeText={(text) => setAnswer(text)}
-                  value={answer}
-                />
-                <TouchableOpacity style={QuestionStyle.tchAnswer4}>
-                  <MaterialCommunityIcons
-                    name="volume-high"
-                    size={DIMENSION.sizeIconSmall}
-                    color="#fff"
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
+  //           <View
+  //             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+  //             <TextInput
+  //               style={{
+  //                 height: 40,
+  //                 borderColor: 'gray',
+  //                 borderWidth: 1,
+  //                 width: '100%',
+  //               }}
+  //               onChangeText={(text) => setAnswer(text)}
+  //               value={answer}
+  //             />
+  //             <TouchableOpacity style={QuestionStyle.tchAnswer3}>
+  //               <FontAwesome5
+  //                 name="microphone"
+  //                 size={DIMENSION.sizeIconBig}
+  //                 color="#fff"
+  //               />
+  //             </TouchableOpacity>
+  //             {console.log(type)}
+  //           </View>
+  //         </View>
+  //       );
+  //       break;
+  //     case 4:
+  //       var string = question2.detail_question;
+  //       var arr = string.split(' ');
+  //       promise = (
+  //         <View style={{flex: 8}}>
+  //           <View style={{flex: 2}}>
+  //             <Text style={[Style.text18, {marginBottom: 10}]}>Cau hoi</Text>
+  //             <View style={{alignItems: 'center'}}>
+  //               <TextInput
+  //                 style={{
+  //                   height: 40,
+  //                   borderColor: 'gray',
+  //                   borderWidth: 1,
+  //                   width: '100%',
+  //                 }}
+  //                 onChangeText={(text) => setAnswer(text)}
+  //                 value={answer}
+  //               />
+  //               <TouchableOpacity style={QuestionStyle.tchAnswer4}>
+  //                 <MaterialCommunityIcons
+  //                   name="volume-high"
+  //                   size={DIMENSION.sizeIconSmall}
+  //                   color="#fff"
+  //                 />
+  //               </TouchableOpacity>
+  //             </View>
+  //           </View>
 
-            <View style={QuestionStyle.sectionAnswer}>
-              {arr.map((item, key) => (
-                <TouchableOpacity key={key} style={QuestionStyle.tchAnswer}>
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              ))}
-              {console.log(type)}
-            </View>
-          </View>
-        );
-        break;
-      default:
-        break;
-    }
-    return promise;
-  };
+  //           <View style={QuestionStyle.sectionAnswer}>
+  //             {arr.map((item, key) => (
+  //               <TouchableOpacity key={key} style={QuestionStyle.tchAnswer}>
+  //                 <Text>{item}</Text>
+  //               </TouchableOpacity>
+  //             ))}
+  //             {console.log(type)}
+  //           </View>
+  //         </View>
+  //       );
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   return promise;
+  // };
 
   const check = () => {
     if (data.length == 0) {
@@ -231,22 +225,18 @@ const Evaluation = ({route, navigation}) => {
   };
   return (
     <View style={{height: '100%', width: '100%', padding: 15}}>
-      <HeaderQuestion count={c * 0.1 + 0.1} />
-      {sectionAnswer()}
+      <HeaderQuestion navigation={navigation} count={c * 0.1 + 0.1} />
+      {question2.id != null ? (
+        <View>
+          <Text>Cau hoi</Text>
+        </View>
+      ) : (
+        <View>
+          <Text>Dang cap nhat</Text>
+        </View>
+      )}
       <TouchableOpacity style={QuestionStyle.btnSubmit} onPress={() => check()}>
         <Text style={Style.text15}>Kiểm tra</Text>
-        {console.log(
-          'score :' +
-            JSON.stringify(score) +
-            ', crown: ' +
-            JSON.stringify(crown) +
-            ', idquestion: ' +
-            question2.id +
-            ', length: ' +
-            data.length +
-            ', count: ' +
-            c,
-        )}
       </TouchableOpacity>
     </View>
   );

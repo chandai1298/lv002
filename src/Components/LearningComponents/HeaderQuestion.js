@@ -5,11 +5,16 @@ import {QuestionStyle, DIMENSION} from '../../CommonStyles';
 import * as Progress from 'react-native-progress';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const HeaderQuestion = ({count}) => {
+const HeaderQuestion = ({navigation, count}) => {
   return (
     <View style={QuestionStyle.headerQuestion}>
       <View style={QuestionStyle.iconHeader}>
-        <FontAwesome5 name="times" size={DIMENSION.sizeIcon} color="#ababab" />
+        <FontAwesome5
+          name="times"
+          size={DIMENSION.sizeIcon}
+          color="#ababab"
+          onPress={() => navigation.navigate('Home')}
+        />
       </View>
       <View style={QuestionStyle.progressHeader}>
         <Progress.Bar progress={count} width={300} color="#25aff7" />

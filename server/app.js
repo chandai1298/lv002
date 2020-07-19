@@ -56,11 +56,11 @@ app.post('/getConfig', function (req, res) {
 app.post('/getQuestion', function (req, res) {
   var category = req.body;
   var query =
-    'select q.id_title,q.question,q.detail_question,q.answer,t.title,q.image,q.sound,q.id\
-  from question as q,lession as l,category as c,title as t\
+    'select q.question,q.detail_question,q.answer,q.image,q.sound,q.id\
+  from question as q,lession as l,category as c\
   WHERE c.id=l.id_category and l.id=q.id_lession and c.id=' +
     category.id +
-    ' and t.id=q.id_title ORDER BY RAND() LIMIT 8';
+    ' ORDER BY RAND() LIMIT 8';
   con.query(query, [category.id], (err, rows, fields) => {
     if (!err) {
       res.send(rows);
@@ -69,7 +69,7 @@ app.post('/getQuestion', function (req, res) {
     }
   });
 });
-//du lieu cac cau hoi
+// lay ten bai hoc va cac link lien ket toi bai hoc
 app.post('/getLession', function (req, res) {
   var category = req.body;
   var query =
@@ -85,7 +85,59 @@ app.post('/getLession', function (req, res) {
     }
   });
 });
+app.get('/getPartRead', function (req, res) {
+  con.query('select * from part where type="read"', function (
+    error,
+    rows,
+    fields,
+  ) {
+    if (error) console.log(error);
+    else {
+      console.log(rows);
+      res.send(rows);
+    }
+  });
+});
+app.get('/getPartListening', function (req, res) {
+  con.query('select * from part where type="listening"', function (
+    error,
+    rows,
+    fields,
+  ) {
+    if (error) console.log(error);
+    else {
+      console.log(rows);
+      res.send(rows);
+    }
+  });
+});
 
+//danh sach cau hoi trong tung part trong tung de thi
+app.post('/getQuestionPart', function (req, res) {
+  var category = req.body;
+  var query =
+    'select q.question,q.detail_question,q.answer,q.image,q.sound,q.id,q.id_part,q.id_lession\
+  from question as q,lession as l,category as c, part as p\
+  WHERE c.id=l.id_category and l.id=q.id_lession and c.id=' +
+    category.id +
+    ' and p.id=q.id_part and\
+  p.id=' +
+    category.id_part +
+    ' and l.id=' +
+    category.id_lession +
+    ' ORDER BY RAND() LIMIT 8';
+  con.query(
+    query,
+    [category.id, category.id_part, category.id_lession],
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    },
+  );
+});
 // Information USER
 app.get('/getData', function (req, res) {
   con.query('select * from user', function (error, rows, fields) {
