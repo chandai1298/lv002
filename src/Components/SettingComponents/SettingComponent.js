@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {Style, SettingStyle} from '../../CommonStyles';
 import SwitchComponent from './SwitchComponent';
-import {IN4_APP} from '../../../server/ConnectServer/In4App';
+import {IN4_APP} from '../../ConnectServer/In4App';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const SettingComponent = ({getId, title, type, style}) => {

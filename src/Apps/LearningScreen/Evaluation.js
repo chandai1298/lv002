@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 // import Questions from '../../Components/LearningComponents/Questions';
-import {IN4_APP} from '../../../server/ConnectServer/In4App';
+import {IN4_APP} from '../../ConnectServer/In4App';
 import {Style, QuestionStyle, DIMENSION} from '../../CommonStyles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

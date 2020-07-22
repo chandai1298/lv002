@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {IN4_APP} from '../../../server/ConnectServer/In4App';
+import {IN4_APP} from '../../ConnectServer/In4App';
 import {QuestionStyle, Style, DIMENSION} from '../../CommonStyles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

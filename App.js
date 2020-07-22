@@ -19,7 +19,7 @@ import BottomTabMain from './src/Apps/BottomTabMain';
 import {AuthContext} from './src/LoginScreen/context';
 import SplashScreen from './src/LoginScreen/SplashScreen';
 import SignInScreen from './src/LoginScreen/SignInScreen';
-import {IN4_USER} from './server/ConnectServer/In4User';
+import {IN4_USER} from './src/ConnectServer/In4User';
 import Player from './src/Components/SoundComponents/Player';
 import Dictionary from './src/Apps/LearningScreen/Dictionary';
 import Translator from './src/Apps/LearningScreen/Translator';

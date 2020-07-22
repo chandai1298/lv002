@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {IN4_APP} from '../../../server/ConnectServer/In4App';
+import {IN4_APP} from '../../ConnectServer/In4App';
 import {LearningStyle, Style, DIMENSION} from '../../CommonStyles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

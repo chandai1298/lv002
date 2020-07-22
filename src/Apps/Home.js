@@ -10,7 +10,7 @@ import {
 import {Style, DIMENSION} from '../CommonStyles';
 import HeaderHome from '../Components/HomeComponents/HeaderHome';
 import HomeItem from '../Components/HomeComponents/HomeItem';
-import {IN4_APP} from '../../server/ConnectServer/In4App';
+import {IN4_APP} from '../ConnectServer/In4App';
 
 export default class Home extends React.Component {
   constructor(props) {
