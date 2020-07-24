@@ -25,17 +25,18 @@ const PartDetail = ({route, navigation}) => {
 
   const [data, setData] = React.useState([
     {
-      id_title: '',
-      question: '',
-      detail_question: '',
-      answer: '',
-      title: '',
-      image: '',
-      roleId: '',
-      sound: '',
       id: '',
-      id_part: '',
       id_lession: '',
+      id_part: '',
+      question: '',
+      dapanA: '',
+      dapanB: '',
+      dapanC: '',
+      dapanD: '',
+      answer: '',
+      image: '',
+      isActive: '',
+      sound: '',
     },
   ]);
   const getData = () => {
@@ -67,9 +68,7 @@ const PartDetail = ({route, navigation}) => {
     let type = question.id_part;
     switch (type) {
       case 1:
-        var string = question.detail_question;
         var abcd = ['A', 'B', 'C', 'D'];
-        var arr = string.split('#');
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 2}}>

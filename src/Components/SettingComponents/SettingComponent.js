@@ -32,14 +32,12 @@ const SettingComponent = ({getId, title, type, style}) => {
   };
 
   const listConfig = () => {
-    return data.map((data) => {
-      return (
-        <View style={SettingStyle.flexDirectionRow} key={data.id}>
-          <Text>{data.title}</Text>
-          <SwitchComponent switchValue={Boolean(data.status)} />
-        </View>
-      );
-    });
+    return data.map((data) => (
+      <View style={SettingStyle.flexDirectionRow} key={data.id}>
+        <Text>{data.title}</Text>
+        <SwitchComponent switchValue={data.status} />
+      </View>
+    ));
   };
 
   return (
