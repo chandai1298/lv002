@@ -1,0 +1,13 @@
+import React, {useEffect} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {IN4_APP} from '../../../ConnectServer/In4App';
+import {LearningStyle, Style, DIMENSION} from '../../../CommonStyles';
+
+const Listening = ({route, navigation}) => {
+  return (
+    <View style={{flex: 1}}>
+      <Text>Listening</Text>
+    </View>
+  );
+};
+export default Listening;

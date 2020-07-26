@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {IN4_APP} from '../../ConnectServer/In4App';
-import {LearningStyle, Style, DIMENSION} from '../../CommonStyles';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {IN4_APP} from '../../../ConnectServer/In4App';
+import {LearningStyle, Style, DIMENSION} from '../../../CommonStyles';
 
 const Part = ({route, navigation}) => {
   const {nameLession, id_category, id_lession} = route.params;

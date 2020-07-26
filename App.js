@@ -20,41 +20,18 @@ import {AuthContext} from './src/LoginScreen/context';
 import SplashScreen from './src/LoginScreen/SplashScreen';
 import SignInScreen from './src/LoginScreen/SignInScreen';
 import {IN4_USER} from './src/ConnectServer/In4User';
-import Player from './src/Components/SoundComponents/Player';
 import Dictionary from './src/Apps/LearningScreen/Dictionary';
 import Translator from './src/Apps/LearningScreen/Translator';
 import Toeic from './src/Apps/LearningScreen/Toeic';
 import OnB1 from './src/Apps/LearningScreen/OnB1';
-import Part from './src/Components/LearningComponents/Part';
-import PartDetail from './src/Components/LearningComponents/PartDetail';
 import Evaluation from './src/Apps/LearningScreen/Evaluation';
+import Part from './src/Components/LearningComponents/OnB1Components/Part';
+import PartDetail from './src/Components/LearningComponents/OnB1Components/PartDetail';
+import Speaking from './src/Components/LearningComponents/ToeicComponents/Speaking';
+import Listening from './src/Components/LearningComponents/ToeicComponents/Listening';
+import Writing from './src/Components/LearningComponents/ToeicComponents/Writing';
+import Reading from './src/Components/LearningComponents/ToeicComponents/Reading';
 import ChangePassword from './src/Components/SettingComponents/ChangePassword';
-export const TRACKS = [
-  {
-    title: 'Stressed Out',
-    artist: 'Twenty One Pilots',
-    albumArtUrl:
-      'http://36.media.tumblr.com/14e9a12cd4dca7a3c3c4fe178b607d27/tumblr_nlott6SmIh1ta3rfmo1_1280.jpg',
-    audioUrl:
-      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/y2mate.com%20-%20Send%20My%20Love%20%20Sit%20Still%2C%20Look%20Pretty%20(Acoustic%20Mashup)%20-%20Landon%20Austin%20and%20Kaya%20May_T1cugr4N-dY.mp3?alt=media&token=a0251baa-cc63-4747-9246-0c8ba8e0330c',
-  },
-  {
-    title: 'Love Yourself',
-    artist: 'Justin Bieber',
-    albumArtUrl:
-      'http://arrestedmotion.com/wp-content/uploads/2015/10/JB_Purpose-digital-deluxe-album-cover_lr.jpg',
-    audioUrl:
-      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/Reality%20%20-%20%20Lost%20%20Frequencies.mp3?alt=media&token=8a8797b1-6e45-4499-bbd8-f2891400e3fb',
-  },
-  {
-    title: 'Hotline Bling',
-    artist: 'Drake',
-    albumArtUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/c/c9/Drake_-_Hotline_Bling.png',
-    audioUrl:
-      'https://firebasestorage.googleapis.com/v0/b/fir-rn-785e2.appspot.com/o/y2mate.com%20-%20Send%20My%20Love%20%20Sit%20Still%2C%20Look%20Pretty%20(Acoustic%20Mashup)%20-%20Landon%20Austin%20and%20Kaya%20May_T1cugr4N-dY.mp3?alt=media&token=a0251baa-cc63-4747-9246-0c8ba8e0330c',
-  },
-];
 
 const Stack = createStackNavigator();
 function HomeScreen({navigation}) {
@@ -71,13 +48,7 @@ function SettingScreen({navigation}) {
     </View>
   );
 }
-function PlayerScreen({navigation}) {
-  return (
-    <View style={Style.container}>
-      <Player tracks={TRACKS} />
-    </View>
-  );
-}
+
 function DictionaryScreen({route, navigation}) {
   return (
     <View style={Style.container}>
@@ -96,6 +67,34 @@ function ToeicScreen({route, navigation}) {
   return (
     <View style={Style.container}>
       <Toeic navigation={navigation} route={route} />
+    </View>
+  );
+}
+function SpeakingScreen({route, navigation}) {
+  return (
+    <View style={Style.container}>
+      <Speaking navigation={navigation} route={route} />
+    </View>
+  );
+}
+function ReadingScreen({route, navigation}) {
+  return (
+    <View style={Style.container}>
+      <Reading navigation={navigation} route={route} />
+    </View>
+  );
+}
+function WritingScreen({route, navigation}) {
+  return (
+    <View style={Style.container}>
+      <Writing navigation={navigation} route={route} />
+    </View>
+  );
+}
+function ListeningScreen({route, navigation}) {
+  return (
+    <View style={Style.container}>
+      <Listening navigation={navigation} route={route} />
     </View>
   );
 }
@@ -323,7 +322,22 @@ const App = () => {
               />
               <Stack.Screen
                 name="toeic_listening"
-                component={PlayerScreen}
+                component={ListeningScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="toeic_speaking"
+                component={SpeakingScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="toeic_reading"
+                component={ReadingScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="toeic_writing"
+                component={WritingScreen}
                 options={{headerShown: false}}
               />
               <Stack.Screen
