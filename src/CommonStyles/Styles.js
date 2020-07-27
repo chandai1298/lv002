@@ -22,6 +22,7 @@ const Style = StyleSheet.create({
   text15: {
     fontSize: 15,
     fontWeight: 'bold',
+    color: '#e6e6f6',
   },
   text16: {
     fontSize: 16,
@@ -74,6 +75,13 @@ const Style = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 250,
+  },
+  images2: {
+    // height: '100%',
+    // width: '100%',
+    width: 180,
+    height: 100,
+    // backgroundColor: 'red',
   },
 });
 export {Style};

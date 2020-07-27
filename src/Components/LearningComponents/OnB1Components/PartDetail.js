@@ -12,6 +12,7 @@ import {QuestionStyle, Style, DIMENSION} from '../../../CommonStyles';
 import HeaderQuestion from '../../../Components/LearningComponents/HeaderQuestion';
 import Player from '../../SoundComponents/Player';
 import {ScrollView} from 'react-native-gesture-handler';
+import LinearGradient from 'react-native-linear-gradient';
 
 const PartDetail = ({route, navigation}) => {
   const [answer, setAnswer] = React.useState(null);
@@ -83,6 +84,8 @@ const PartDetail = ({route, navigation}) => {
   const AnswerABCD = ({item}) => {
     return (
       <View>
+      
+
         <TouchableOpacity
           style={QuestionStyle.tchAnswer2}
           onPress={() => setAnswer(item.dapanA)}>
@@ -567,24 +570,32 @@ const PartDetail = ({route, navigation}) => {
       case 7:
         promise = (
           <View style={{flex: 10}}>
-            <View style={{flex: 2}}>
+            <View style={{flex: 1}}>
               <Text style={Style.text15}>
-                Part 3: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho câu
+                Part 7: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho câu
                 hỏi.
               </Text>
-              <View style={Style.coverCenter}>
-                <Player tracks={question.sound} />
-              </View>
             </View>
-            <View style={{flex: 8, padding: 15}}>
+            <View style={{flex: 9}}>
               <ScrollView>
-                <MultiQuestion
-                  item={question}
-                  item2={question2}
-                  item3={question3}
-                  item4={question4}
-                  item5={question5}
-                />
+                <View
+                  style={{
+                    borderWidth: 2,
+                    borderColor: '#ebebeb',
+                    padding: 10,
+                    borderRadius: 10,
+                  }}>
+                  <Text style={Style.text16}>{question.sound}</Text>
+                </View>
+                <View style={{padding: 15}}>
+                  <MultiQuestion
+                    item={question}
+                    item2={question2}
+                    item3={question3}
+                    item4={question4}
+                    item5={question5}
+                  />
+                </View>
               </ScrollView>
             </View>
           </View>

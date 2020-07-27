@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {IN4_APP} from '../../../ConnectServer/In4App';
 import {LearningStyle, Style, DIMENSION} from '../../../CommonStyles';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Part = ({route, navigation}) => {
   const {nameLession, id_category, id_lession} = route.params;
@@ -50,40 +51,52 @@ const Part = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <View style={{flex: 1, alignItems: 'center'}}>
+      <View style={[Style.coverCenter, {flex: 1}]}>
         <Text style={Style.text18}>{name_Lession}</Text>
       </View>
       <View style={[LearningStyle.container, {alignContent: 'flex-end'}]}>
         {listening.map((item, key) => (
-          <TouchableOpacity
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
             key={key}
-            style={LearningStyle.tchLession}
-            onPress={() =>
-              navigation.navigate(item.link, {
-                id_category: idCategory,
-                id_lession: idLession,
-                id_part: item.id,
-              })
-            }>
-            <Text style={Style.text15}>{item.name}</Text>
-          </TouchableOpacity>
+            style={LearningStyle.tchLessionCover}
+            colors={['#687ae4', '#754ea6']}>
+            <TouchableOpacity
+              style={LearningStyle.tchLession}
+              onPress={() =>
+                navigation.navigate(item.link, {
+                  id_category: idCategory,
+                  id_lession: idLession,
+                  id_part: item.id,
+                })
+              }>
+              <Text style={Style.text15}>{item.name}</Text>
+            </TouchableOpacity>
+          </LinearGradient>
         ))}
       </View>
       <View style={Style.line} />
       <View style={LearningStyle.container}>
         {reads.map((item, key) => (
-          <TouchableOpacity
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
             key={key}
-            style={LearningStyle.tchLession}
-            onPress={() =>
-              navigation.navigate(item.link, {
-                id_category: idCategory,
-                id_lession: idLession,
-                id_part: item.id,
-              })
-            }>
-            <Text style={Style.text15}>{item.name}</Text>
-          </TouchableOpacity>
+            style={LearningStyle.tchLessionCover}
+            colors={['#687ae4', '#754ea6']}>
+            <TouchableOpacity
+              style={LearningStyle.tchLession}
+              onPress={() =>
+                navigation.navigate(item.link, {
+                  id_category: idCategory,
+                  id_lession: idLession,
+                  id_part: item.id,
+                })
+              }>
+              <Text style={Style.text15}>{item.name}</Text>
+            </TouchableOpacity>
+          </LinearGradient>
         ))}
       </View>
     </View>

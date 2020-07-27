@@ -10,13 +10,14 @@ const LearningStyle = StyleSheet.create({
     width: '100%',
     padding: 15,
   },
-  tchLession: {
-    backgroundColor: '#25aff7',
+  tchLessionCover: {
     borderColor: '#fff',
     borderWidth: 1,
     borderRadius: 250,
+    margin: 4,
+  },
+  tchLession: {
     alignItems: 'center',
-    margin: 5,
     justifyContent: 'center',
     width: 180,
     height: 60,
