@@ -15,13 +15,24 @@ import {useTheme} from '@react-navigation/native';
 const SplashScreen = ({navigation}) => {
   const {colors} = useTheme();
   return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="#54ce04" barStyle="light-content" />
+    <LinearGradient
+      start={{x: 0, y: 0}}
+      end={{x: 0, y: 1}}
+      style={styles.container}
+      colors={['#687ae4', '#754ea6']}>
+      <StatusBar
+        backgroundColor="#54ce04"
+        barStyle="light-content"
+        hidden={true}
+      />
       <View style={styles.header}>
         <Animatable.Image
           animation="bounceIn"
           duraton="1500"
-          source={require('../Assets/img/logo.jpg')}
+          source={{
+            uri:
+              'https://pic.funnygifsbox.com/uploads/2019/02/funnygifsbox.com-2019-02-13-04-28-32-46.gif',
+          }}
           style={styles.logo}
           resizeMode="stretch"
         />
@@ -38,7 +49,7 @@ const SplashScreen = ({navigation}) => {
           style={[
             styles.title,
             {
-              color: colors.text,
+              color: '#754ea6',
             },
           ]}>
           Learning everyday with everyone!
@@ -51,7 +62,9 @@ const SplashScreen = ({navigation}) => {
         <View style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('SignInScreen')}>
             <LinearGradient
-              colors={['#54ce04e0', '#54ce04']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              colors={['#687ae4', '#754ea6']}
               style={styles.signIn}>
               <Text style={styles.textSign}>Get Started</Text>
               <MaterialIcons name="navigate-next" color="#fff" size={20} />
@@ -59,7 +72,7 @@ const SplashScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </Animatable.View>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -71,7 +84,7 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#54ce04',
+    // backgroundColor: '#54ce04',
   },
   header: {
     flex: 2,
@@ -111,6 +124,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 50,
     flexDirection: 'row',
+
+    backgroundColor: '#FFFFFF',
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowOpacity: 0.8,
+    elevation: 8,
+    shadowRadius: 15,
+    shadowOffset: {width: 1, height: 13},
   },
   textSign: {
     color: 'white',

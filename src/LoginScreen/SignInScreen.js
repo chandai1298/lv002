@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 
 import {useTheme} from 'react-native-paper';
@@ -118,7 +118,11 @@ const SignInScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      start={{x: 0, y: 0}}
+      end={{x: 0, y: 1}}
+      style={styles.container}
+      colors={['#687ae4', '#754ea6']}>
       <StatusBar backgroundColor="#54ce04" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>Đăng nhập!</Text>
@@ -135,13 +139,13 @@ const SignInScreen = ({navigation}) => {
           style={[
             styles.text_footer,
             {
-              color: colors.text,
+              color: '#754ea6',
             },
           ]}>
           Tên đăng nhập
         </Text>
         <View style={styles.action}>
-          <FontAwesome name="user-o" color={colors.text} size={20} />
+          <FontAwesome name="user" color="#754ea6" size={20} />
           <TextInput
             placeholder="Your Username"
             placeholderTextColor="#666666"
@@ -157,7 +161,7 @@ const SignInScreen = ({navigation}) => {
           />
           {data.check_textInputChange ? (
             <Animatable.View animation="bounceIn">
-              <Feather name="check-circle" color="green" size={20} />
+              <Feather name="check-circle" color="#754ea6" size={20} />
             </Animatable.View>
           ) : null}
         </View>
@@ -171,14 +175,14 @@ const SignInScreen = ({navigation}) => {
           style={[
             styles.text_footer,
             {
-              color: colors.text,
+              color: '#754ea6',
               marginTop: 35,
             },
           ]}>
           Mật khẩu
         </Text>
         <View style={styles.action}>
-          <Feather name="lock" color={colors.text} size={20} />
+          <Feather name="lock" color="#754ea6" size={20} />
           <TextInput
             placeholder="Your Password"
             placeholderTextColor="#666666"
@@ -194,9 +198,9 @@ const SignInScreen = ({navigation}) => {
           />
           <TouchableOpacity onPress={updateSecureTextEntry}>
             {data.secureTextEntry ? (
-              <Feather name="eye-off" color="grey" size={20} />
+              <Feather name="eye-off" color="#754ea6" size={20} />
             ) : (
-              <Feather name="eye" color="grey" size={20} />
+              <Feather name="eye" color="#754ea6" size={20} />
             )}
           </TouchableOpacity>
         </View>
@@ -207,9 +211,7 @@ const SignInScreen = ({navigation}) => {
         )}
 
         <TouchableOpacity>
-          <Text style={{color: '#0581b9f0', marginTop: 15}}>
-            Quên mật khẩu?
-          </Text>
+          <Text style={{color: '#754ea6', marginTop: 15}}>Quên mật khẩu?</Text>
         </TouchableOpacity>
         <View style={styles.button}>
           <TouchableOpacity
@@ -218,7 +220,9 @@ const SignInScreen = ({navigation}) => {
               loginHandle(data.username, data.password);
             }}>
             <LinearGradient
-              colors={['#54ce04e0', '#54ce04']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              colors={['#687ae4', '#754ea6']}
               style={styles.signIn}>
               <Text
                 style={[
@@ -237,7 +241,7 @@ const SignInScreen = ({navigation}) => {
             style={[
               styles.signIn,
               {
-                borderColor: '#54ce04',
+                borderColor: '#687ae4',
                 borderWidth: 1,
                 marginTop: 15,
               },
@@ -246,7 +250,7 @@ const SignInScreen = ({navigation}) => {
               style={[
                 styles.textSign,
                 {
-                  color: '#54ce04',
+                  color: '#754ea6',
                 },
               ]}>
               Đăng ký
@@ -254,7 +258,7 @@ const SignInScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </Animatable.View>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -263,7 +267,6 @@ export default SignInScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#54ce04',
   },
   header: {
     flex: 1,
@@ -321,7 +324,14 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 50,
+
+    backgroundColor: '#FFFFFF',
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowOpacity: 0.8,
+    elevation: 8,
+    shadowRadius: 15,
+    shadowOffset: {width: 1, height: 13},
   },
   textSign: {
     fontSize: 18,
