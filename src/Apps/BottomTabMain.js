@@ -39,17 +39,17 @@ export default class BottomTabMain extends React.Component {
     return (
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: '#FFFFFF',
-          inactiveTintColor: '#F8F8F8',
+          activeTintColor: '#9c27b0',
+          tabStyle: {
+            // backgroundColor: '#e7eefe',
+            height: 50,
+          },
           style: {
-            backgroundColor: '#687ae4',
-            borderTopColor: '#687ae4',
+            // backgroundColor: '#687ae4',
+            borderTopColor: '#9c27b0',
             borderTopWidth: 2,
             // borderBottomColor: '#87B56A',
             // borderBottomWidth: 3,
-          },
-          labelStyle: {
-            textAlign: 'center',
           },
         }}>
         <Tab.Screen
@@ -57,14 +57,15 @@ export default class BottomTabMain extends React.Component {
           component={HomeScreen}
           options={{
             tabBarLabel: '',
-            tabBarIcon: () => (
+            tabBarIcon: ({color}) => (
               <FontAwesome5
+                color={color}
                 name="home"
-                size={30}
-                color="#fff"
+                size={28}
                 style={{marginTop: 15}}
               />
             ),
+            inactiveTintColor: 'green',
           }}
         />
         <Tab.Screen
@@ -72,12 +73,12 @@ export default class BottomTabMain extends React.Component {
           component={ProfileScreen}
           options={{
             tabBarLabel: '',
-            tabBarIcon: () => (
+            tabBarIcon: ({color}) => (
               <FontAwesome5
+                color={color}
                 name="user"
-                size={30}
-                color="#fff"
-                style={{marginTop: 10}}
+                size={28}
+                style={{marginTop: 15}}
               />
             ),
           }}
@@ -87,11 +88,11 @@ export default class BottomTabMain extends React.Component {
           component={RankScreen}
           options={{
             tabBarLabel: '',
-            tabBarIcon: () => (
+            tabBarIcon: ({color}) => (
               <FontAwesome5
+                color={color}
                 name="chart-bar"
-                size={30}
-                color="#fff"
+                size={28}
                 style={{marginTop: 15}}
               />
             ),

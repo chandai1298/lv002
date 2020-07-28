@@ -24,10 +24,10 @@ const HeaderQuestion = ({navigation, count}) => {
           QuestionStyle.iconHeader,
           {flexDirection: 'row', justifyContent: 'center'},
         ]}>
-        <MaterialCommunityIcons
-          name="lightbulb-on-outline"
+        <FontAwesome5
+          name="heartbeat"
           size={DIMENSION.sizeIcon}
-          color="#ffeb3b"
+          color="#f44336"
         />
         <Text style={QuestionStyle.textHeader}>5</Text>
       </View>

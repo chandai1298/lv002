@@ -61,12 +61,13 @@ const Style = StyleSheet.create({
   //header 3 component chiều ngang dãn đều
   headerContainer: {
     borderBottomWidth: 2,
+    borderBottomColor: '#9c27b0',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: 27,
     height: 60,
-    // paddingBottom: 12,
+    // paddingBottom: 8,
   },
 
   //header icon va icon gia
@@ -87,7 +88,7 @@ const Style = StyleSheet.create({
     // backgroundColor: 'red',
   },
   boxShadow: {
-    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#FFFFFF',
     shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOpacity: 0.8,
     elevation: 6,

@@ -6,6 +6,7 @@ const HomeStyle = StyleSheet.create({
   headerText: {
     marginLeft: 3,
     fontSize: 20,
+    fontWeight: 'bold',
   },
   category: {
     width: '100%',
