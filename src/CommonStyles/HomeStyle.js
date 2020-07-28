@@ -5,7 +5,14 @@ const HomeStyle = StyleSheet.create({
   },
   headerText: {
     marginLeft: 3,
-    fontSize: 15,
+    fontSize: 20,
+  },
+  category: {
+    width: '100%',
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
   },
 });
 export {HomeStyle};

@@ -37,13 +37,33 @@ export default class BottomTabMain extends React.Component {
   }
   render() {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: '#FFFFFF',
+          inactiveTintColor: '#F8F8F8',
+          style: {
+            backgroundColor: '#687ae4',
+            borderTopColor: '#687ae4',
+            borderTopWidth: 2,
+            // borderBottomColor: '#87B56A',
+            // borderBottomWidth: 3,
+          },
+          labelStyle: {
+            textAlign: 'center',
+          },
+        }}>
         <Tab.Screen
           name="Home"
           component={HomeScreen}
           options={{
+            tabBarLabel: '',
             tabBarIcon: () => (
-              <FontAwesome5 name="home" size={26} color="#1d2129" />
+              <FontAwesome5
+                name="home"
+                size={30}
+                color="#fff"
+                style={{marginTop: 15}}
+              />
             ),
           }}
         />
@@ -51,8 +71,14 @@ export default class BottomTabMain extends React.Component {
           name="Profile"
           component={ProfileScreen}
           options={{
+            tabBarLabel: '',
             tabBarIcon: () => (
-              <FontAwesome5 name="user" size={26} color="#1d2129" />
+              <FontAwesome5
+                name="user"
+                size={30}
+                color="#fff"
+                style={{marginTop: 10}}
+              />
             ),
           }}
         />
@@ -60,9 +86,14 @@ export default class BottomTabMain extends React.Component {
           name="Rank"
           component={RankScreen}
           options={{
-            // tabBarLabel: 'Rank',
+            tabBarLabel: '',
             tabBarIcon: () => (
-              <FontAwesome5 name="chart-bar" size={26} color="#1d2129" />
+              <FontAwesome5
+                name="chart-bar"
+                size={30}
+                color="#fff"
+                style={{marginTop: 15}}
+              />
             ),
           }}
         />

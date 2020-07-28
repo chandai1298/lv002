@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {DIMENSION} from '../CommonStyles';
 const Style = StyleSheet.create({
+  backgroundColorMain: {
+    backgroundColor: '#e7eefe',
+  },
   coverCenter: {
     flex: 1,
     justifyContent: 'center',
@@ -14,10 +17,10 @@ const Style = StyleSheet.create({
     fontSize: 30,
     marginBottom: 10,
   },
-  text18: {
-    fontSize: 18,
-    // marginBottom: 10,
+  text20: {
+    fontSize: 20,
     fontWeight: 'bold',
+    color: '#e6e6f6',
   },
   text15: {
     fontSize: 15,
