@@ -4,6 +4,7 @@ import {Style, SettingStyle} from '../../CommonStyles';
 import SwitchComponent from './SwitchComponent';
 import {IN4_APP} from '../../ConnectServer/In4App';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {LinearTextGradient} from 'react-native-text-gradient';
 
 const SettingComponent = ({getId, title, type, style}) => {
   const [loading, setLoading] = React.useState(false);
@@ -43,13 +44,19 @@ const SettingComponent = ({getId, title, type, style}) => {
   return (
     <View style={style}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text style={Style.text18}>{title}</Text>
+        <LinearTextGradient
+          locations={[0, 1]}
+          colors={['#091048', '#754ea6']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}>
+          <Text style={[Style.text20]}>{title}</Text>
+        </LinearTextGradient>
         {!loading ? (
           <View>
             <FontAwesome5
               name="chevron-circle-up"
               size={20}
-              color="#4285f4"
+              color="#754ea6"
               style={Style.headerIcon}
               onPress={() => {
                 getDataConfig(getId);
@@ -62,7 +69,7 @@ const SettingComponent = ({getId, title, type, style}) => {
             <FontAwesome5
               name="chevron-circle-down"
               size={20}
-              color="#4285f4"
+              color="#754ea6"
               style={Style.headerIcon}
               onPress={() => {
                 getDataConfig(getId);

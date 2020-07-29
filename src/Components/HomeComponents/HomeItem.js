@@ -30,7 +30,7 @@ const HomeItem = ({
           end={{x: 1, y: 0}}
           colors={[`${color1}`, `${color2}`]}
           style={[HomeStyle.category, Style.boxShadow]}>
-          <Text style={Style.text20}>{title}</Text>
+          <Text style={[Style.text20, Style.textColore6e6f6]}>{title}</Text>
         </LinearGradient>
       </TouchableOpacity>
       <View

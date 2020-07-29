@@ -3,7 +3,7 @@ const DIMENSION = {
   width: Dimensions.get('window').width,
   height: Dimensions.get('window').height,
   sizeIcon: 20,
-  sizeIcon2: 15,
+  sizeIcon2: 22,
   sizeIconBig: 70,
   sizeIconSmall: 40,
 };

@@ -13,7 +13,7 @@ const HeaderQuestion = ({navigation, count}) => {
           name="times"
           size={DIMENSION.sizeIcon}
           color="#ababab"
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('part')}
         />
       </View>
       <View style={QuestionStyle.progressHeader}>

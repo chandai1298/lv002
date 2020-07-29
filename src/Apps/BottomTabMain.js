@@ -39,14 +39,14 @@ export default class BottomTabMain extends React.Component {
     return (
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: '#9c27b0',
+          activeTintColor: '#754ea6',
           tabStyle: {
             // backgroundColor: '#e7eefe',
             height: 50,
           },
           style: {
             // backgroundColor: '#687ae4',
-            borderTopColor: '#9c27b0',
+            borderTopColor: '#754ea6',
             borderTopWidth: 2,
             // borderBottomColor: '#87B56A',
             // borderBottomWidth: 3,

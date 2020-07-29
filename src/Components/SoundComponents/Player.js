@@ -68,11 +68,13 @@ export default class Player extends Component {
         }}>
         <StatusBar hidden={true} />
 
-        <Controls
-          onPressPlay={() => this.setState({paused: false})}
-          onPressPause={() => this.setState({paused: true})}
-          paused={this.state.paused}
-        />
+        <View style={{marginRight: 10}}>
+          <Controls
+            onPressPlay={() => this.setState({paused: false})}
+            onPressPause={() => this.setState({paused: true})}
+            paused={this.state.paused}
+          />
+        </View>
         <SeekBar
           onSeek={this.seek.bind(this)}
           trackLength={this.state.totalLength}

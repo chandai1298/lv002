@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {View, ScrollView, Button} from 'react-native';
+import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import HeaderComponent from './HeaderComponent';
 import SettingComponent from '../Components/SettingComponents/SettingComponent';
 import In4Component from '../Components/SettingComponents/In4Component';
 import {AuthContext} from '../LoginScreen/context';
 import AsyncStorage from '@react-native-community/async-storage';
-import {SettingStyle} from '../CommonStyles';
+import {SettingStyle, Style} from '../CommonStyles';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Setting = ({navigation}) => {
   const {signOut} = React.useContext(AuthContext);
@@ -49,7 +50,23 @@ const Setting = ({navigation}) => {
           navigation={navigation}
           desNav="changePassword"
         />
-        <Button title="Đăng xuất" onPress={() => signOut()} />
+
+        <View style={{padding: 15}}>
+          <TouchableOpacity
+            style={[SettingStyle.btnSettings, Style.boxShadow]}
+            onPress={() => signOut()}>
+            <LinearGradient
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              colors={['#687ae4', '#754ea6']}
+              style={[SettingStyle.btnSettings, Style.boxShadow]}>
+              <Text style={[Style.text20, Style.textColore6e6f6]}>
+                Đăng xuất
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+
         <SettingComponent
           style={[SettingStyle.sectionIn4]}
           getId={dataUser.id}

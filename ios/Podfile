@@ -83,6 +83,8 @@ target 'applv_002' do
 
   pod 'TextToSpeech', :path => '../node_modules/react-native-tts'
 
+  pod 'RNTextGradientView', :path => '../node_modules/react-native-text-gradient'
+
   target 'applv_002Tests' do
     inherit! :complete
     # Pods for testing

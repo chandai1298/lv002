@@ -20,15 +20,11 @@ const Style = StyleSheet.create({
   text20: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#e6e6f6',
   },
-  text15: {
-    fontSize: 15,
+
+  text18: {
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#e6e6f6',
-  },
-  text16: {
-    fontSize: 16,
   },
   line: {
     width: DIMENSION.width,
@@ -36,23 +32,25 @@ const Style = StyleSheet.create({
     borderColor: '#000',
   },
   input: {
-    paddingLeft: 13,
-    height: 40,
-    borderColor: 'gray',
+    paddingLeft: 15,
+    height: 50,
+    fontSize: 18,
+    borderColor: '#754ea6',
     borderWidth: 1,
     borderRadius: 20,
     marginBottom: 10,
     width: DIMENSION.width - 30,
   },
-  textColor95d332: {
-    color: '#95d332',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  textColor56656c: {
-    color: '#56656c',
-  },
 
+  textColor754ea6: {
+    color: '#754ea6',
+  },
+  textColore6e6f6: {
+    color: '#e6e6f6',
+  },
+  textColor687ae4: {
+    color: '#687ae4',
+  },
   container: {
     backgroundColor: 'white',
     flex: 1,
@@ -61,7 +59,7 @@ const Style = StyleSheet.create({
   //header 3 component chiều ngang dãn đều
   headerContainer: {
     borderBottomWidth: 2,
-    borderBottomColor: '#9c27b0',
+    borderBottomColor: '#754ea6',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -72,7 +70,7 @@ const Style = StyleSheet.create({
 
   //header icon va icon gia
   headerIcon: {
-    width: 30,
+    width: 50,
   },
 
   images: {

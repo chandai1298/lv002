@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import iyegoroff.RNTextGradient.RNTextGradientPackage;
 import net.no_mad.tts.TextToSpeechPackage;
 import net.no_mad.tts.TextToSpeechPackage;
 import com.BV.LinearGradient.LinearGradientPackage;

@@ -41,13 +41,20 @@ const SettingStyle = StyleSheet.create({
     paddingRight: '15%',
   },
   btnChangPassword: {
-    width: '45%',
+    // width: '45%',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // borderWidth: 2,
+    // paddingTop: 5,
+    // paddingBottom: 5,
+    // borderRadius: 5,
+  },
+  btnSettings: {
+    width: '100%',
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 2,
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderRadius: 5,
+    borderRadius: 50,
   },
 });
 export {SettingStyle};

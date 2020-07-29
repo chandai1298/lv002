@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {QuestionStyle, DIMENSION} from '../../CommonStyles';
 
 const Controls = ({paused, onPressPlay, onPressPause}) => (
   <View style={styles.container}>
@@ -9,13 +10,13 @@ const Controls = ({paused, onPressPlay, onPressPause}) => (
     {!paused ? (
       <TouchableOpacity onPress={onPressPause}>
         <View style={styles.playButton}>
-          <FontAwesome5 name="pause" color="#000" />
+          <FontAwesome5 name="pause" color="#000" size={DIMENSION.sizeIcon2} />
         </View>
       </TouchableOpacity>
     ) : (
       <TouchableOpacity onPress={onPressPlay}>
         <View style={styles.playButton}>
-          <FontAwesome5 name="play" color="#000" />
+          <FontAwesome5 name="play" color="#000" size={DIMENSION.sizeIcon2} />
         </View>
       </TouchableOpacity>
     )}
