@@ -4,19 +4,17 @@ const ProfileStyle = StyleSheet.create({
   sectionAvatar: {
     flex: 2,
     flexDirection: 'row',
-    padding: 15,
-    paddingBottom: 0,
-    paddingTop: 3,
+    padding: 10,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: '#754ea6',
     borderRadius: 15,
     margin: 10,
   },
   sectionAvtLeft: {
-    width: '70%',
+    width: '60%',
   },
   SectionAvtRight: {
-    width: '30%',
+    width: '40%',
     alignItems: 'flex-end',
   },
   flexRowIcon: {
@@ -39,7 +37,9 @@ const ProfileStyle = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     padding: 10,
-    borderRadius: 10,
+    // borderBottomColor: '#9a9a9a',
+    // borderBottomWidth: 1,
+    // borderRadius: 10,
   },
   sectionLeft: {
     // height: 100,
@@ -47,9 +47,9 @@ const ProfileStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   sectionLeftImg: {
-    height: 65,
-    width: 50,
-    borderRadius: 10,
+    height: 70,
+    width: 70,
+    borderRadius: 5,
   },
   // tab ban be
   sectionBanBeImg: {

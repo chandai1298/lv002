@@ -5,7 +5,7 @@ import Home from './Home';
 import Rank from './Rank';
 import Profile from './Profile';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({navigation, route}) => {
   return (
     <Home
       icon1="bolt"
@@ -13,92 +13,86 @@ const HomeScreen = ({navigation}) => {
       icon3="fire-alt"
       icon4="heartbeat"
       navigation={navigation}
+      route={route}
     />
   );
 };
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({navigation, route}) => {
   return (
     <Profile
       title="Hồ sơ"
       icon="cog"
       navigation={navigation}
       desComponent="Setting"
+      route={route}
     />
   );
 };
-const RankScreen = ({navigation}) => {
-  return <Rank title="Xếp hạng" navigation={navigation} />;
+const RankScreen = ({navigation, route}) => {
+  return <Rank title="Xếp hạng" navigation={navigation} route={route} />;
 };
 
 const Tab = createBottomTabNavigator();
-export default class BottomTabMain extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: '#754ea6',
-          tabStyle: {
-            // backgroundColor: '#e7eefe',
-            height: 50,
-          },
-          style: {
-            // backgroundColor: '#687ae4',
-            borderTopColor: '#754ea6',
-            borderTopWidth: 2,
-            // borderBottomColor: '#87B56A',
-            // borderBottomWidth: 3,
-          },
-        }}>
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: '',
-            tabBarIcon: ({color}) => (
-              <FontAwesome5
-                color={color}
-                name="home"
-                size={28}
-                style={{marginTop: 15}}
-              />
-            ),
-            inactiveTintColor: 'green',
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            tabBarLabel: '',
-            tabBarIcon: ({color}) => (
-              <FontAwesome5
-                color={color}
-                name="user"
-                size={28}
-                style={{marginTop: 15}}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Rank"
-          component={RankScreen}
-          options={{
-            tabBarLabel: '',
-            tabBarIcon: ({color}) => (
-              <FontAwesome5
-                color={color}
-                name="chart-bar"
-                size={28}
-                style={{marginTop: 15}}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    );
-  }
-}
+const BottomTabMain = () => {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: '#754ea6',
+        tabStyle: {
+          height: 50,
+        },
+        style: {
+          borderTopColor: '#754ea6',
+          borderTopWidth: 2,
+        },
+      }}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({color}) => (
+            <FontAwesome5
+              color={color}
+              name="home"
+              size={28}
+              style={{marginTop: 15}}
+            />
+          ),
+          inactiveTintColor: 'green',
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({color}) => (
+            <FontAwesome5
+              color={color}
+              name="user"
+              size={28}
+              style={{marginTop: 15}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Rank"
+        component={RankScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({color}) => (
+            <FontAwesome5
+              color={color}
+              name="chart-bar"
+              size={28}
+              style={{marginTop: 15}}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+export default BottomTabMain;

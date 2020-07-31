@@ -26,6 +26,9 @@ const Style = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  text16: {
+    fontSize: 16,
+  },
   line: {
     width: DIMENSION.width,
     borderWidth: 1,
@@ -74,8 +77,8 @@ const Style = StyleSheet.create({
   },
 
   images: {
-    height: 100,
-    width: 100,
+    height: 130,
+    width: 130,
     borderRadius: 250,
   },
   images2: {

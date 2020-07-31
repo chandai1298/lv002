@@ -24,22 +24,22 @@ const Profile = ({title, navigation, icon, desComponent}) => {
       password: '',
       name: '',
       email: '',
-      avatar: '',
+      avatar: '1',
       roleId: '',
       isActive: '',
     },
   ]);
-
-  useEffect(() => {
-    showData();
-  }, []);
 
   const showData = async () => {
     let user = await AsyncStorage.getItem('user');
     let parsed = JSON.parse(user);
     setData(parsed);
   };
+
   const userData = data[0];
+  useEffect(() => {
+    showData();
+  }, []);
   return (
     <View style={Style.container}>
       <StatusBar hidden={true} />
@@ -49,16 +49,24 @@ const Profile = ({title, navigation, icon, desComponent}) => {
         icon={icon}
         navigation={navigation}
         desComponent={desComponent}
+        data={userData}
       />
-      <Avatar name={userData.name} username={userData.username} />
+
+      <Avatar
+        name={userData.name}
+        username={userData.username}
+        image={userData.avatar}
+      />
       <View style={ProfileStyle.containerPadding15}>
         <Tab.Navigator
           tabBarOptions={{
-            labelStyle: {fontSize: 15},
-            // tabStyle: {width: 100},
+            labelStyle: [Style.text18, {color: '#9a9a9a'}],
             style: {
-              fontWeight: 'bold', // height: 40,
+              // borderTopColor: '#754ea6',
+              // borderTopWidth: 3,
             },
+            // activeTintColor: 'tomato',
+            // inactiveTintColor: 'gray',
           }}>
           <Tab.Screen
             name="ThanhTich"

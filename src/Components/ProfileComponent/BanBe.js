@@ -2,22 +2,38 @@ import React, {Component} from 'react';
 import {View, Text, Image, FlatList} from 'react-native';
 import {Style, ProfileStyle, DIMENSION} from '../../CommonStyles';
 import * as Progress from 'react-native-progress';
+import {LinearTextGradient} from 'react-native-text-gradient';
 
 const Items = ({title, thumbnailUrl}) => (
   <View style={ProfileStyle.sectionThanhTich}>
     <View style={[ProfileStyle.flexRowIcon, Style.rowCenter]}>
       <Image
         source={{uri: thumbnailUrl}}
-        style={ProfileStyle.sectionBanBeImg}
+        style={[ProfileStyle.sectionLeftImg, {borderRadius: 70}]}
+        // style={ProfileStyle.sectionBanBeImg}
       />
-      <Text style={[Style.text15, {marginLeft: 20}]}>Header</Text>
+      <View style={{marginLeft: 15}}>
+        <LinearTextGradient
+          locations={[0, 1]}
+          colors={['#091048', '#754ea6']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}>
+          <Text style={[Style.text20]}>Header</Text>
+        </LinearTextGradient>
+      </View>
     </View>
     <View
       style={[
         ProfileStyle.SectionAvtRight,
         {justifyContent: 'center', marginRight: 30},
       ]}>
-      <Text>31289 KN</Text>
+      <LinearTextGradient
+        locations={[0, 1]}
+        colors={['#091048', '#754ea6']}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}>
+        <Text style={Style.text18}>31289 KN</Text>
+      </LinearTextGradient>
     </View>
   </View>
 );

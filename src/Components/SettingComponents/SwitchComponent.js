@@ -11,7 +11,12 @@ const SwitchComponent = ({switchValue}) => {
 
   return (
     <View>
-      <Switch onValueChange={toggleSwitch} value={isEnabled} />
+      <Switch
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+        thumbColor={isEnabled ? '#754ea6' : '#f4f3f4'}
+        trackColor={{false: '#9a9a9a', true: '#9a9a9a'}}
+      />
     </View>
   );
 };

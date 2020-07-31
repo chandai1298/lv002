@@ -8,32 +8,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {SettingStyle, Style} from '../CommonStyles';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Setting = ({navigation}) => {
+const Setting = ({navigation, route}) => {
+  const {in4User} = route.params;
+  const dataUser = in4User;
+
   const {signOut} = React.useContext(AuthContext);
-  const [data, setData] = React.useState([
-    {
-      id: '',
-      username: '',
-      password: '',
-      name: '',
-      email: '',
-      avatar: '',
-      roleId: '',
-      isActive: '',
-    },
-  ]);
-
-  // in4 component
-  const showData = async () => {
-    let user = await AsyncStorage.getItem('user');
-    let parsed = JSON.parse(user);
-    setData(parsed);
-  };
-
-  const dataUser = data[0];
 
   useEffect(() => {
-    showData();
+    // setData(dataUser);
   }, []);
 
   return (
@@ -50,7 +32,6 @@ const Setting = ({navigation}) => {
           navigation={navigation}
           desNav="changePassword"
         />
-
         <View style={{padding: 15}}>
           <TouchableOpacity
             style={[SettingStyle.btnSettings, Style.boxShadow]}
@@ -66,7 +47,6 @@ const Setting = ({navigation}) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-
         <SettingComponent
           style={[SettingStyle.sectionIn4]}
           getId={dataUser.id}

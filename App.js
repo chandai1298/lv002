@@ -34,17 +34,17 @@ import Reading from './src/Components/LearningComponents/ToeicComponents/Reading
 import ChangePassword from './src/Components/SettingComponents/ChangePassword';
 
 const Stack = createStackNavigator();
-function HomeScreen({navigation}) {
+function HomeScreen() {
   return (
     <View style={Style.container}>
-      <BottomTabMain navigation={navigation} />
+      <BottomTabMain />
     </View>
   );
 }
-function SettingScreen({navigation}) {
+function SettingScreen({route, navigation}) {
   return (
     <View style={Style.container}>
-      <Setting navigation={navigation} />
+      <Setting navigation={navigation} route={route} />
     </View>
   );
 }

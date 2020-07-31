@@ -54,7 +54,7 @@ function Item({username, name, email, image, navigation, desNav}) {
         <TouchableOpacity
           style={[Style.input, {justifyContent: 'center'}]}
           onPress={() => navigation.navigate(desNav)}>
-          <Text>*****</Text>
+          <Text>********</Text>
         </TouchableOpacity>
       </View>
       <View>
@@ -81,20 +81,6 @@ function Item({username, name, email, image, navigation, desNav}) {
   );
 }
 const In4Component = ({userData, navigation, desNav}) => {
-  const [data, setData] = React.useState({
-    id: '',
-    username: '',
-    password: '',
-    name: '',
-    email: '',
-    avatar: '',
-    roleId: '',
-    isActive: '',
-  });
-
-  useEffect(() => {
-    setData(userData);
-  });
   return (
     <View style={SettingStyle.sectionIn4}>
       <LinearTextGradient
@@ -104,12 +90,13 @@ const In4Component = ({userData, navigation, desNav}) => {
         end={{x: 1, y: 0}}>
         <Text style={[Style.text20]}> Hồ sơ của bạn</Text>
       </LinearTextGradient>
+
       <Item
-        image={data.avatar}
-        username={data.username}
-        pass={data.password}
-        name={data.name}
-        email={data.email}
+        image={userData.avatar}
+        username={userData.username}
+        pass={userData.password}
+        name={userData.name}
+        email={userData.email}
         navigation={navigation}
         desNav={desNav}
       />

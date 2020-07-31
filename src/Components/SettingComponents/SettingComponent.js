@@ -1,19 +1,19 @@
 import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, ActivityIndicator} from 'react-native';
 import {Style, SettingStyle} from '../../CommonStyles';
 import SwitchComponent from './SwitchComponent';
-import {IN4_APP} from '../../ConnectServer/In4App';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {LinearTextGradient} from 'react-native-text-gradient';
+import {IN4_APP} from '../../ConnectServer/In4App';
 
-const SettingComponent = ({getId, title, type, style}) => {
-  const [loading, setLoading] = React.useState(false);
-  const [data, setData] = React.useState([
+const SettingComponent = ({getId, title, style, type}) => {
+  const [loading, setLoading] = React.useState(true);
+  const [collapse, setCollapse] = React.useState(true);
+  const [dataConfig, setDataConfig] = React.useState([
     {id: '', id_user: '', title: '', status: '', status2: '', isActive: ''},
   ]);
 
-  //config
-  const getDataConfig = (userId) => {
+  const getDataConfig = (userId, type) => {
     const url = IN4_APP.getConfig;
     fetch(url, {
       method: 'POST',
@@ -25,17 +25,27 @@ const SettingComponent = ({getId, title, type, style}) => {
     })
       .then((res) => res.json())
       .then((results) => {
-        setData(results);
+        setDataConfig(results);
+        setLoading(false);
       })
       .catch((err) => {
         console.log('err', err);
       });
   };
 
+  useEffect(() => {
+    getDataConfig(getId, type);
+  }, []);
+
   const listConfig = () => {
-    return data.map((data) => (
+    return dataConfig.map((data) => (
       <View style={SettingStyle.flexDirectionRow} key={data.id}>
-        <Text>{data.title}</Text>
+        {/* <LinearTextGradient
+          locations={[0, 1]}
+          colors={['#754ea6', '#687ae4']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}></LinearTextGradient> */}
+        <Text style={{fontSize: 18}}>{data.title}</Text>
         <SwitchComponent switchValue={data.status} />
       </View>
     ));
@@ -51,7 +61,7 @@ const SettingComponent = ({getId, title, type, style}) => {
           end={{x: 1, y: 0}}>
           <Text style={[Style.text20]}>{title}</Text>
         </LinearTextGradient>
-        {!loading ? (
+        {!collapse ? (
           <View>
             <FontAwesome5
               name="chevron-circle-up"
@@ -59,8 +69,7 @@ const SettingComponent = ({getId, title, type, style}) => {
               color="#754ea6"
               style={Style.headerIcon}
               onPress={() => {
-                getDataConfig(getId);
-                setLoading(true);
+                setCollapse(true);
               }}
             />
           </View>
@@ -72,14 +81,18 @@ const SettingComponent = ({getId, title, type, style}) => {
               color="#754ea6"
               style={Style.headerIcon}
               onPress={() => {
-                getDataConfig(getId);
-                setLoading(false);
+                setCollapse(false);
               }}
             />
           </View>
         )}
       </View>
-      {loading ? listConfig() : null}
+
+      {loading ? (
+        <ActivityIndicator color="#9a9a9a" />
+      ) : (
+        collapse && listConfig()
+      )}
     </View>
   );
 };

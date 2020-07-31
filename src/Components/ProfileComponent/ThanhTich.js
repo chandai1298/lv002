@@ -2,15 +2,23 @@ import React, {Component} from 'react';
 import {View, Text, Image, FlatList} from 'react-native';
 import {Style, ProfileStyle, DIMENSION} from '../../CommonStyles';
 import * as Progress from 'react-native-progress';
+import {LinearTextGradient} from 'react-native-text-gradient';
 
 const Items = ({title, thumbnailUrl}) => (
   <View style={ProfileStyle.sectionThanhTich}>
     <View style={ProfileStyle.sectionLeft}>
       <Image source={{uri: thumbnailUrl}} style={ProfileStyle.sectionLeftImg} />
     </View>
-    <View style={[ProfileStyle.sectionLeft, {marginLeft: 10}]}>
-      <Text style={Style.text15}>Header</Text>
-      <Text style={Style.text}>{title}</Text>
+    <View style={[ProfileStyle.sectionLeft, {marginLeft: 15}]}>
+      <LinearTextGradient
+        locations={[0, 1]}
+        colors={['#091048', '#754ea6']}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}>
+        <Text style={Style.text20}>Header</Text>
+      </LinearTextGradient>
+
+      <Text style={{fontSize: 18}}>{title}</Text>
       <Progress.Bar progress={0.3} width={250} />
     </View>
   </View>
