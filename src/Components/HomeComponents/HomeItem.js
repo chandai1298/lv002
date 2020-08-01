@@ -17,6 +17,7 @@ const HomeItem = ({
     <View
       style={[Style.coverCenter, HomeStyle.headerFlexIcon, {marginBottom: 20}]}>
       <TouchableOpacity
+        activeOpacity={0.5}
         style={{
           width: '60%',
           height: 65,

@@ -72,12 +72,13 @@ const QuestionStyle = StyleSheet.create({
     height: DIMENSION.width / 5,
   },
   btnSubmit: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    width: DIMENSION.width - 30,
-    alignItems: 'center',
-    borderRadius: 20,
-    backgroundColor: '#5bca06',
+    // paddingTop: 10,
+    // paddingBottom: 10,
+    // width: DIMENSION.width - 30,
+    // alignItems: 'center',
+    borderRadius: 30,
+    height: '100%',
+    width: '100%',
   },
 });
 export {QuestionStyle};

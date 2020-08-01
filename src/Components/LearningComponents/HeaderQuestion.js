@@ -1,23 +1,29 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {QuestionStyle, DIMENSION} from '../../CommonStyles';
+import {QuestionStyle, DIMENSION, Style} from '../../CommonStyles';
 import * as Progress from 'react-native-progress';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HeaderQuestion = ({navigation, count}) => {
   return (
     <View style={QuestionStyle.headerQuestion}>
-      <View style={QuestionStyle.iconHeader}>
-        <FontAwesome5
-          name="times"
-          size={DIMENSION.sizeIcon}
-          color="#ababab"
-          onPress={() => navigation.navigate('part')}
-        />
+      <View style={[QuestionStyle.iconHeader, Style.coverCenter]}>
+        <TouchableOpacity onPress={() => navigation.navigate('part')}>
+          <FontAwesome5
+            name="times"
+            size={DIMENSION.sizeIcon2}
+            color="#ababab"
+          />
+        </TouchableOpacity>
       </View>
       <View style={QuestionStyle.progressHeader}>
-        <Progress.Bar progress={count} width={300} color="#25aff7" />
+        <Progress.Bar
+          animationType="timing"
+          progress={count}
+          width={300}
+          color="#754ea6"
+        />
       </View>
       <View
         style={[
@@ -29,7 +35,7 @@ const HeaderQuestion = ({navigation, count}) => {
           size={DIMENSION.sizeIcon}
           color="#f44336"
         />
-        <Text style={QuestionStyle.textHeader}>5</Text>
+        <Text style={[Style.text20, {marginLeft: 3, color: '#f44336'}]}>5</Text>
       </View>
     </View>
   );

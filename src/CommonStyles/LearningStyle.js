@@ -12,7 +12,7 @@ const LearningStyle = StyleSheet.create({
   },
   tchLessionCover: {
     borderColor: '#fff',
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderRadius: 250,
     margin: 4,
   },
@@ -21,6 +21,7 @@ const LearningStyle = StyleSheet.create({
     justifyContent: 'center',
     width: 180,
     height: 60,
+    borderRadius: 250,
   },
 });
 export {LearningStyle};

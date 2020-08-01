@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-  FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import {IN4_APP} from '../../../ConnectServer/In4App';
 import {QuestionStyle, Style, DIMENSION} from '../../../CommonStyles';
@@ -13,8 +13,10 @@ import HeaderQuestion from '../../../Components/LearningComponents/HeaderQuestio
 import Player from '../../SoundComponents/Player';
 import {ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
+import {LinearTextGradient} from 'react-native-text-gradient';
 
 const PartDetail = ({route, navigation}) => {
+  const [loading, setLoading] = React.useState(true);
   const [answer, setAnswer] = React.useState(null);
   const [answer2, setAnswer2] = React.useState(null);
   const [answer3, setAnswer3] = React.useState(null);
@@ -66,6 +68,7 @@ const PartDetail = ({route, navigation}) => {
       .then((res) => res.json())
       .then((results) => {
         setData(results);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -84,8 +87,6 @@ const PartDetail = ({route, navigation}) => {
   const AnswerABCD = ({item}) => {
     return (
       <View>
-      
-
         <TouchableOpacity
           style={QuestionStyle.tchAnswer2}
           onPress={() => setAnswer(item.dapanA)}>
@@ -444,10 +445,17 @@ const PartDetail = ({route, navigation}) => {
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 2}}>
-              <Text style={Style.text15}>
-                Part 1: Chọn một đáp án mô tả chính xác nhất nội dung có trong
-                hình.
-              </Text>
+              <LinearTextGradient
+                locations={[0, 1]}
+                colors={['#091048', '#754ea6']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text style={Style.text20}>
+                  Part 1: Chọn một đáp án mô tả chính xác nhất nội dung có trong
+                  hình.
+                </Text>
+              </LinearTextGradient>
+
               <View style={Style.coverCenter}>
                 <Player tracks={question.sound} />
               </View>
@@ -468,9 +476,15 @@ const PartDetail = ({route, navigation}) => {
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 2}}>
-              <Text style={Style.text15}>
-                Part 2: Chọn một câu hồi đáp phù hợp nhất cho câu hỏi.
-              </Text>
+              <LinearTextGradient
+                locations={[0, 1]}
+                colors={['#091048', '#754ea6']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text style={Style.text20}>
+                  Part 2: Chọn một câu hồi đáp phù hợp nhất cho câu hỏi.
+                </Text>
+              </LinearTextGradient>
             </View>
             <View style={{flex: 3}}>
               <Player tracks={question.sound} />
@@ -489,10 +503,17 @@ const PartDetail = ({route, navigation}) => {
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 2}}>
-              <Text style={Style.text15}>
-                Part 3: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho câu
-                hỏi.
-              </Text>
+              <LinearTextGradient
+                locations={[0, 1]}
+                colors={['#091048', '#754ea6']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text style={Style.text20}>
+                  Part 3: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho
+                  câu hỏi.
+                </Text>
+              </LinearTextGradient>
+
               <View style={Style.coverCenter}>
                 <Player tracks={question.sound} />
               </View>
@@ -513,10 +534,17 @@ const PartDetail = ({route, navigation}) => {
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 2}}>
-              <Text style={Style.text15}>
-                Part 4: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho câu
-                hỏi.
-              </Text>
+              <LinearTextGradient
+                locations={[0, 1]}
+                colors={['#091048', '#754ea6']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text style={Style.text20}>
+                  Part 4: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho
+                  câu hỏi.
+                </Text>
+              </LinearTextGradient>
+
               <View style={Style.coverCenter}>
                 <Player tracks={question.sound} />
               </View>
@@ -537,9 +565,15 @@ const PartDetail = ({route, navigation}) => {
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 2}}>
-              <Text style={[Style.text15, {paddingTop: 10}]}>
-                Part 5: Chọn một đáp án phù hợp nhất để điền vào chỗ trống.
-              </Text>
+              <LinearTextGradient
+                locations={[0, 1]}
+                colors={['#091048', '#754ea6']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text style={Style.text20}>
+                  Part 5: Chọn một đáp án phù hợp nhất để điền vào chỗ trống.
+                </Text>
+              </LinearTextGradient>
             </View>
             <View style={{flex: 2}}>
               <Text style={Style.text16}>{question.question}</Text>
@@ -554,9 +588,16 @@ const PartDetail = ({route, navigation}) => {
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 2}}>
-              <Text style={Style.text15}>
-                Part 6: Chọn một đáp án phù hợp nhất để điền vào chỗ trống.
-              </Text>
+              <LinearTextGradient
+                locations={[0, 1]}
+                colors={['#091048', '#754ea6']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text style={Style.text20}>
+                  Part 6: Chọn một đáp án phù hợp nhất để điền vào chỗ trống.
+                </Text>
+              </LinearTextGradient>
+
               <View style={Style.coverCenter}>
                 <Player tracks={question.sound} />
               </View>
@@ -571,10 +612,16 @@ const PartDetail = ({route, navigation}) => {
         promise = (
           <View style={{flex: 10}}>
             <View style={{flex: 1}}>
-              <Text style={Style.text15}>
-                Part 7: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho câu
-                hỏi.
-              </Text>
+              <LinearTextGradient
+                locations={[0, 1]}
+                colors={['#091048', '#754ea6']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text style={Style.text20}>
+                  Part 7: Bạn đọc câu hỏi và chọn câu trả lời phù hợp nhất cho
+                  câu hỏi.
+                </Text>
+              </LinearTextGradient>
             </View>
             <View style={{flex: 9}}>
               <ScrollView>
@@ -926,15 +973,33 @@ const PartDetail = ({route, navigation}) => {
     }
   };
   return data.length > 0 ? (
-    <View style={{height: '100%', width: '100%', padding: 15}}>
-      <HeaderQuestion navigation={navigation} count={c * 0.2} />
-      {sectionAnswer()}
-      <TouchableOpacity style={QuestionStyle.btnSubmit} onPress={() => check()}>
-        <Text style={Style.text15}>Kiểm tra</Text>
-      </TouchableOpacity>
-    </View>
+    loading ? (
+      <ActivityIndicator
+        style={Style.coverCenter}
+        color="#9a9a9a"
+        size="large"
+      />
+    ) : (
+      <View style={{height: '100%', width: '100%', padding: 15}}>
+        <HeaderQuestion navigation={navigation} count={c * 0.2} />
+        {sectionAnswer()}
+
+        <TouchableOpacity
+          style={[Style.boxShadow, {height: 50, borderRadius: 30}]}
+          onPress={() => check()}
+          activeOpacity={0.5}>
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#687ae4', '#754ea6']}
+            style={[Style.coverCenter, QuestionStyle.btnSubmit]}>
+            <Text style={[Style.text20, Style.textColore6e6f6]}>Kiểm tra</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+    )
   ) : (
-    <View>
+    <View style={Style.coverCenter}>
       <Text>Cau hoi dang cap nhat</Text>
     </View>
   );

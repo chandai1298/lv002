@@ -10,7 +10,6 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  TouchableHighlight,
   ToastAndroid,
   Text,
   Image,
@@ -20,9 +19,13 @@ import Tts from 'react-native-tts';
 import Languages from '../../Assets/txt/languages.json';
 import SpeechAndroid from 'react-native-android-voice';
 import {Picker} from '@react-native-community/picker';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Style, DIMENSION} from '../../CommonStyles';
+import LinearGradient from 'react-native-linear-gradient';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const Translator = () => {
-  const [languageTo, setLanguageTo] = React.useState('');
+  const [languageTo, setLanguageTo] = React.useState('en');
   const [languageCode, setLanguageCode] = React.useState('en');
   const [micOn, setMicOn] = React.useState(false);
   const [inputText, onChangeInputText] = React.useState('');
@@ -36,20 +39,13 @@ const Translator = () => {
     );
   });
 
-  // const handleTranslate = () => {
-  //   const translator = TranslatorFactory.createTranslator();
-  //   translator.translate(inputText).then((translated) => {
-  //     Tts.getInitStatus().then(() => {
-  //       Tts.speak(translated);
-  //     });
-  //     Tts.stop();
-  //   });
-  // };
   const translate = () => {
-    const translator = TranslatorFactory.createTranslator();
-    translator.translate(inputText).then((translated) => {
-      onChangeOutputText(translated);
-    });
+    try {
+      const translator = TranslatorFactory.createTranslator();
+      translator.translate(inputText).then((translated) => {
+        onChangeOutputText(translated);
+      });
+    } catch (error) {}
   };
 
   const _OnMic = async () => {
@@ -79,86 +75,196 @@ const Translator = () => {
   return (
     <View style={styles.container}>
       <View style={styles.input}>
+        <View style={{flexDirection: 'row-reverse'}}>
+          <FontAwesome5
+            name="times"
+            size={DIMENSION.sizeIcon}
+            color="#ababab"
+            onPress={() => onChangeInputText('')}
+          />
+        </View>
         <TextInput
-          style={{flex: 1, height: 80}}
-          placeholder="Enter Text"
+          style={{flex: 1, height: 80, fontSize: 18}}
+          placeholder="Enter something..."
           underlineColorAndroid="transparent"
-          onChangeText={(inputText) =>
-            onChangeInputText(inputText, translate())
-          }
+          onChangeText={(inputText) => onChangeInputText(inputText)}
           value={inputText}
+          multiline={true}
         />
-        <TouchableOpacity onPress={() => _OnMic()}>
-          {micOn ? (
-            <Icon size={30} name="md-mic" style={styles.ImageStyle} />
-          ) : (
-            <Icon size={30} name="md-mic-off" style={styles.ImageStyle} />
-          )}
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity onPress={() => _OnMic()}>
+            {micOn ? (
+              <MaterialCommunityIcons
+                size={30}
+                name="microphone-outline"
+                style={styles.ImageStyle}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                size={30}
+                name="microphone-off"
+                style={styles.ImageStyle}
+              />
+            )}
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{justifyContent: 'center'}}
+            onPress={() => {
+              Tts.getInitStatus().then(() => {
+                Tts.setDefaultLanguage('en-us');
+                Tts.speak(inputText);
+              });
+            }}>
+            <MaterialCommunityIcons
+              name="volume-high"
+              size={30}
+              style={styles.ImageStyle}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View
+        style={[
+          {flexDirection: 'row', height: 50, flex: 2, marginTop: 5},
+          Style.coverCenter,
+        ]}>
+        <TouchableOpacity
+          style={[
+            Style.boxShadow,
+            {
+              borderRadius: 20,
+              width: '40%',
+              height: '80%',
+              marginRight: 10,
+            },
+          ]}
+          onPress={() => {
+            setLanguageTo('vi'), setLanguageCode('vi');
+          }}>
+          <LinearGradient
+            style={[
+              {
+                width: '100%',
+                height: '100%',
+                borderRadius: 20,
+              },
+              Style.coverCenter,
+            ]}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#687ae4', '#754ea6']}>
+            <Text style={[Style.text18, Style.textColore6e6f6]}>
+              Anh - Việt
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            Style.boxShadow,
+            {
+              borderRadius: 20,
+              width: '40%',
+              height: '80%',
+            },
+          ]}
+          onPress={() => {
+            setLanguageTo('en'), setLanguageCode('en');
+          }}>
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#687ae4', '#754ea6']}
+            style={[
+              {
+                width: '100%',
+                height: '100%',
+                borderRadius: 20,
+              },
+              Style.coverCenter,
+            ]}>
+            <Text style={[Style.text18, Style.textColore6e6f6]}>
+              Việt - Anh
+            </Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
 
       <Picker
+        style={{flex: 1}}
         selectedValue={languageTo}
         onValueChange={(lang) => {
-          setLanguageTo(lang), setLanguageCode(lang);
+          setLanguageTo(lang),
+            setLanguageCode(lang),
+            console.log(languageTo + ', ' + languageCode);
         }}>
         {Object.keys(Languages).map((key) => (
-          <Picker.Item key={key} label={Languages[key]} value={key} />
+          <Picker.Item
+            key={key}
+            label={'Auto Detect - ' + Languages[key]}
+            value={key}
+          />
         ))}
       </Picker>
 
-      <View style={styles.output}>
-        {/* onTranslationEnd={this.textToSpeech} */}
-        <Text>{outputText}</Text>
+      {translate()}
+
+      <View style={[styles.input, {marginBottom: 150}]}>
+        <View
+          style={{
+            flex: 1,
+            fontSize: 18,
+          }}>
+          <TextInput
+            style={{
+              fontSize: 18,
+            }}
+            value={outputText}
+            multiline={true}
+          />
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              Tts.getInitStatus().then(() => {
+                Tts.setDefaultLanguage('vi-us');
+                Tts.speak(outputText);
+              });
+            }}>
+            <MaterialCommunityIcons
+              name="volume-high"
+              size={30}
+              style={styles.ImageStyle}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-      {/* <TouchableOpacity
-        style={styles.submitButton}
-        onPress={() => handleTranslate()}>
-        <Text style={styles.submitButtonText}> Submit </Text>
-      </TouchableOpacity> */}
     </View>
   );
 };
 export default Translator;
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 53,
+    flex: 13,
+    padding: 15,
   },
   input: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 5,
+    padding: 5,
     backgroundColor: '#fff',
-    borderWidth: 0.5,
-    borderColor: '#000',
-    // height: 40,
+    borderWidth: 1,
+    borderColor: '#754ea6',
     borderRadius: 5,
-    margin: 10,
+    height: 200,
+    shadowRadius: 20,
+    shadowOpacity: 0.5,
+    elevation: 6,
   },
-  output: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderWidth: 0.5,
-    borderColor: '#000',
-    borderRadius: 5,
-    margin: 10,
-    height: 80,
-  },
+
   ImageStyle: {
-    padding: 10,
-    margin: 5,
-    alignItems: 'center',
-  },
-  submitButton: {
-    backgroundColor: '#7a42f4',
-    padding: 10,
-    margin: 15,
-    borderRadius: 5,
-    height: 40,
-  },
-  submitButtonText: {
-    color: 'white',
+    marginLeft: 5,
+    marginBottom: 5,
+    marginRight: 10,
   },
 });

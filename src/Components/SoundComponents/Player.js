@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, ActivityIndicator} from 'react-native';
 import SeekBar from './SeekBar';
 import Controls from './Controls';
 import Video from 'react-native-video';
@@ -17,12 +17,10 @@ export default class Player extends Component {
   }
 
   setDuration(data) {
-    // console.log(totalLength);
     this.setState({totalLength: Math.floor(data.duration)});
   }
 
   setTime(data) {
-    //console.log(data);
     this.setState({currentPosition: Math.floor(data.currentTime)});
   }
 
@@ -39,11 +37,11 @@ export default class Player extends Component {
     const track = this.props.tracks;
     const video = this.state.isChanging ? null : (
       <Video
-        source={{uri: track}} // Can be a URL or a local file.
+        source={{uri: track}}
         ref="audioElement"
-        paused={this.state.paused} // Pauses playback entirely.
-        resizeMode="cover" // Fill the whole screen at aspect ratio.
-        repeat={true} // Repeat forever.
+        paused={this.state.paused}
+        resizeMode="cover"
+        // repeat={true} // Repeat forever.
         onLoadStart={this.loadStart} // Callback when video starts to load
         onLoad={this.setDuration.bind(this)} // Callback when video loads
         onProgress={this.setTime.bind(this)} // Callback every ~250ms with currentTime
@@ -63,24 +61,27 @@ export default class Player extends Component {
           height: 60,
           flexDirection: 'row',
           width: '100%',
+          // flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'center',
         }}>
         <StatusBar hidden={true} />
 
-        <View style={{marginRight: 10}}>
+        <View style={{marginLeft: 25}}>
           <Controls
             onPressPlay={() => this.setState({paused: false})}
             onPressPause={() => this.setState({paused: true})}
             paused={this.state.paused}
           />
         </View>
-        <SeekBar
-          onSeek={this.seek.bind(this)}
-          trackLength={this.state.totalLength}
-          onSlidingStart={() => this.setState({paused: true})}
-          currentPosition={this.state.currentPosition}
-        />
+        <View>
+          <SeekBar
+            onSeek={this.seek.bind(this)}
+            trackLength={this.state.totalLength}
+            onSlidingStart={() => this.setState({paused: true})}
+            currentPosition={this.state.currentPosition}
+          />
+        </View>
         {video}
       </View>
     );

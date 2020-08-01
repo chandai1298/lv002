@@ -5,29 +5,17 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {QuestionStyle, DIMENSION} from '../../CommonStyles';
 
 const Controls = ({paused, onPressPlay, onPressPause}) => (
-  <View style={styles.container}>
-    <View style={{width: 20}} />
+  <View>
     {!paused ? (
       <TouchableOpacity onPress={onPressPause}>
-        <View style={styles.playButton}>
-          <FontAwesome5 name="pause" color="#000" size={DIMENSION.sizeIcon2} />
-        </View>
+        <FontAwesome5 name="pause" color="#754ea6" size={DIMENSION.sizeIcon2} />
       </TouchableOpacity>
     ) : (
       <TouchableOpacity onPress={onPressPlay}>
-        <View style={styles.playButton}>
-          <FontAwesome5 name="play" color="#000" size={DIMENSION.sizeIcon2} />
-        </View>
+        <FontAwesome5 name="play" color="#754ea6" size={DIMENSION.sizeIcon2} />
       </TouchableOpacity>
     )}
   </View>
 );
 
 export default Controls;
-
-const styles = StyleSheet.create({
-  secondaryControl: {
-    height: 18,
-    width: 18,
-  },
-});
