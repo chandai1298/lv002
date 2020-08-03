@@ -61,6 +61,7 @@ export default class Player extends Component {
           height: 60,
           flexDirection: 'row',
           width: '100%',
+          padding: 10,
           // flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'center',

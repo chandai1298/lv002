@@ -26,7 +26,7 @@ const SeekBar = ({trackLength, currentPosition, onSeek, onSlidingStart}) => {
           alignItems: 'center',
         },
       ]}>
-      <View style={{flexDirection: 'row', width: '20%'}}>
+      <View style={{flexDirection: 'row', width: '20%', marginRight: 15}}>
         <Text style={Style.text16}>{elapsed[0] + ':' + elapsed[1]}</Text>
         <Text style={Style.text16}>
           {trackLength > 1 && ' / ' + remaining[0] + ':' + remaining[1]}

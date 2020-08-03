@@ -14,7 +14,6 @@ import {
   Text,
   Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import Tts from 'react-native-tts';
 import Languages from '../../Assets/txt/languages.json';
 import SpeechAndroid from 'react-native-android-voice';
@@ -75,7 +74,7 @@ const Translator = () => {
   return (
     <View style={styles.container}>
       <View style={styles.input}>
-        <View style={{flexDirection: 'row-reverse'}}>
+        <View style={{flexDirection: 'row-reverse'}}> 
           <FontAwesome5
             name="times"
             size={DIMENSION.sizeIcon}

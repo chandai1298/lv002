@@ -207,7 +207,7 @@ const App = () => {
     () => ({
       signIn: async (foundUser) => {
         const userToken = String(foundUser[0].userToken);
-        const userName = foundUser[0].username;
+        const userName = foundUser[0].Username;
 
         try {
           await AsyncStorage.setItem('userToken', userToken);

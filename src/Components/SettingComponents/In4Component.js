@@ -92,11 +92,11 @@ const In4Component = ({userData, navigation, desNav}) => {
       </LinearTextGradient>
 
       <Item
-        image={userData.avatar}
-        username={userData.username}
-        pass={userData.password}
-        name={userData.name}
-        email={userData.email}
+        image={userData.Avatar}
+        username={userData.Username}
+        pass={userData.Password}
+        name={userData.Name}
+        email={userData.Email}
         navigation={navigation}
         desNav={desNav}
       />

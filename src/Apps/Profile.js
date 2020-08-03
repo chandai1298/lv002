@@ -19,14 +19,14 @@ const Tab = createMaterialTopTabNavigator();
 const Profile = ({title, navigation, icon, desComponent}) => {
   const [data, setData] = React.useState([
     {
-      id: '',
-      username: '',
-      password: '',
-      name: '',
-      email: '',
-      avatar: '1',
-      roleId: '',
-      isActive: '',
+      Id: '',
+      Username: '',
+      Password: '',
+      Name: '',
+      Email: '',
+      Avatar: '1',
+      RoleId: '',
+      IsActive: '',
     },
   ]);
 
@@ -53,9 +53,9 @@ const Profile = ({title, navigation, icon, desComponent}) => {
       />
 
       <Avatar
-        name={userData.name}
-        username={userData.username}
-        image={userData.avatar}
+        name={userData.Name}
+        username={userData.Username}
+        image={userData.Avatar}
       />
       <View style={ProfileStyle.containerPadding15}>
         <Tab.Navigator

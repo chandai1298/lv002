@@ -49,13 +49,13 @@ const Setting = ({navigation, route}) => {
         </View>
         <SettingComponent
           style={[SettingStyle.sectionIn4]}
-          getId={dataUser.id}
+          getId={dataUser.Id}
           type="1"
           title="Tổng quan"
         />
         <SettingComponent
           style={[SettingStyle.sectionIn4, {paddingBottom: 100}]}
-          getId={dataUser.id}
+          getId={dataUser.Id}
           type="2"
           title="Thông báo"
         />

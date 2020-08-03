@@ -98,7 +98,7 @@ const SignInScreen = ({navigation}) => {
       });
 
     const foundUser = user.filter((item) => {
-      return userName == item.username && password == item.password;
+      return userName == item.Username && password == item.Password;
     });
 
     if (data.username.length == 0 || data.password.length == 0) {
