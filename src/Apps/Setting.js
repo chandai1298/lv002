@@ -4,7 +4,6 @@ import HeaderComponent from './HeaderComponent';
 import SettingComponent from '../Components/SettingComponents/SettingComponent';
 import In4Component from '../Components/SettingComponents/In4Component';
 import {AuthContext} from '../LoginScreen/context';
-import AsyncStorage from '@react-native-community/async-storage';
 import {SettingStyle, Style} from '../CommonStyles';
 import LinearGradient from 'react-native-linear-gradient';
 

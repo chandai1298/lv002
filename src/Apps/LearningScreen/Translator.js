@@ -74,7 +74,7 @@ const Translator = () => {
   return (
     <View style={styles.container}>
       <View style={styles.input}>
-        <View style={{flexDirection: 'row-reverse'}}> 
+        <View style={{flexDirection: 'row-reverse'}}>
           <FontAwesome5
             name="times"
             size={DIMENSION.sizeIcon}
@@ -109,10 +109,12 @@ const Translator = () => {
           <TouchableOpacity
             style={{justifyContent: 'center'}}
             onPress={() => {
-              Tts.getInitStatus().then(() => {
-                Tts.setDefaultLanguage('en-us');
-                Tts.speak(inputText);
-              });
+              inputText !== ''
+                ? Tts.getInitStatus().then(() => {
+                    Tts.setDefaultLanguage('en-us');
+                    Tts.speak(inputText);
+                  })
+                : console.log('chua co input');
             }}>
             <MaterialCommunityIcons
               name="volume-high"
@@ -226,10 +228,12 @@ const Translator = () => {
         <View>
           <TouchableOpacity
             onPress={() => {
-              Tts.getInitStatus().then(() => {
-                Tts.setDefaultLanguage('vi-us');
-                Tts.speak(outputText);
-              });
+              outputText !== ''
+                ? Tts.getInitStatus().then(() => {
+                    Tts.setDefaultLanguage('vi-us');
+                    Tts.speak(outputText);
+                  })
+                : console.log('chua co output');
             }}>
             <MaterialCommunityIcons
               name="volume-high"

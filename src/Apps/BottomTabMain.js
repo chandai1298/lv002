@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './Home';
@@ -33,7 +33,9 @@ const RankScreen = ({navigation, route}) => {
 };
 
 const Tab = createBottomTabNavigator();
-const BottomTabMain = () => {
+const BottomTabMain = ({navigation, route}) => {
+  const {user, rank} = route.params;
+
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -61,6 +63,7 @@ const BottomTabMain = () => {
           ),
           inactiveTintColor: 'green',
         }}
+        initialParams={{users: user, ranks: rank}}
       />
       <Tab.Screen
         name="Profile"
@@ -76,6 +79,7 @@ const BottomTabMain = () => {
             />
           ),
         }}
+        initialParams={{users: user, ranks: rank}}
       />
       <Tab.Screen
         name="Rank"

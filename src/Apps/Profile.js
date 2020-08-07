@@ -6,7 +6,6 @@ import HeaderComponent from './HeaderComponent';
 import ThanhTich from '../Components/ProfileComponent/ThanhTich';
 import BanBe from '../Components/ProfileComponent/BanBe';
 import Avatar from '../Components/ProfileComponent/Avatar';
-import AsyncStorage from '@react-native-community/async-storage';
 
 function ThanhTichComponent() {
   return <ThanhTich />;
@@ -16,30 +15,53 @@ function BanBeComponent() {
 }
 
 const Tab = createMaterialTopTabNavigator();
-const Profile = ({title, navigation, icon, desComponent}) => {
-  const [data, setData] = React.useState([
-    {
-      Id: '',
-      Username: '',
-      Password: '',
-      Name: '',
-      Email: '',
-      Avatar: '1',
-      RoleId: '',
-      IsActive: '',
-    },
-  ]);
+const Profile = ({title, navigation, icon, desComponent, route}) => {
+  const {users, ranks} = route.params;
 
-  const showData = async () => {
-    let user = await AsyncStorage.getItem('user');
-    let parsed = JSON.parse(user);
-    setData(parsed);
-  };
+  // const [data, setData] = React.useState([
+  //   {
+  //     Id: '',
+  //     Username: '',
+  //     Password: '',
+  //     Name: '',
+  //     Email: '',
+  //     Avatar: '1',
+  //     RoleId: '',
+  //     IsActive: '',
+  //   },
+  // ]);
+  // const [ranks, setRank] = React.useState([
+  //   {
+  //     id: '',
+  //     id_user: '',
+  //     total_score: '',
+  //     current_score: '',
+  //     crown: '',
+  //     streak: '',
+  //     bestStreak: '',
+  //     hint: '',
+  //   },
+  // ]);
+  // const showData = async () => {
+  //   let user = await AsyncStorage.getItem('user');
+  //   let parsed = JSON.parse(user);
+  //   setData(parsed);
+  //   const getDefinition = IN4_APP.RankOfUser;
+  //   axios
+  //     .post(getDefinition, {
+  //       id: parsed[0].Id,
+  //     })
+  //     .then(function (response) {
+  //       setRank(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error.message);
+  //     });
+  // };
 
-  const userData = data[0];
-  useEffect(() => {
-    showData();
-  }, []);
+  // useEffect(() => {
+  //   showData();
+  // }, []);
   return (
     <View style={Style.container}>
       <StatusBar hidden={true} />
@@ -49,13 +71,13 @@ const Profile = ({title, navigation, icon, desComponent}) => {
         icon={icon}
         navigation={navigation}
         desComponent={desComponent}
-        data={userData}
+        data={users}
       />
-
       <Avatar
-        name={userData.Name}
-        username={userData.Username}
-        image={userData.Avatar}
+        name={users.Name}
+        username={users.Username}
+        image={users.Avatar}
+        rankData={ranks}
       />
       <View style={ProfileStyle.containerPadding15}>
         <Tab.Navigator

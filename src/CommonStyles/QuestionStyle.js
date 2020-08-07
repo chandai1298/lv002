@@ -46,9 +46,11 @@ const QuestionStyle = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 15,
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    // justifyContent: 'center',
+    paddingTop: 4,
     width: '100%',
-    height: 40,
+    height: 50,
     marginBottom: 10,
   },
   tchAnswer3: {

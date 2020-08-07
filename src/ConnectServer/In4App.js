@@ -7,5 +7,7 @@ const IN4_APP = {
   getPartRead: `${URL_NGROK.url}/getPartRead`,
   getPartListening: `${URL_NGROK.url}/getPartListening`,
   getQuestionPart: `${URL_NGROK.url}/getQuestionPart`,
+  getWord: `${URL_NGROK.url}/getWord`,
+  RankOfUser: `${URL_NGROK.url}/RankOfUser`,
 };
 export {IN4_APP};

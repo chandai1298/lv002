@@ -20,6 +20,7 @@ import {AuthContext} from './src/LoginScreen/context';
 import SplashScreen from './src/LoginScreen/SplashScreen';
 import SignInScreen from './src/LoginScreen/SignInScreen';
 import {IN4_USER} from './src/ConnectServer/In4User';
+import {IN4_APP} from './src/ConnectServer/In4App';
 import Dictionary from './src/Apps/LearningScreen/Dictionary';
 import Translator from './src/Apps/LearningScreen/Translator';
 import Toeic from './src/Apps/LearningScreen/Toeic';
@@ -32,12 +33,13 @@ import Listening from './src/Components/LearningComponents/ToeicComponents/Liste
 import Writing from './src/Components/LearningComponents/ToeicComponents/Writing';
 import Reading from './src/Components/LearningComponents/ToeicComponents/Reading';
 import ChangePassword from './src/Components/SettingComponents/ChangePassword';
+import axios from 'axios';
 
 const Stack = createStackNavigator();
-function HomeScreen() {
+function HomeScreen({route, navigation}) {
   return (
     <View style={Style.container}>
-      <BottomTabMain />
+      <BottomTabMain navigation={navigation} route={route} />
     </View>
   );
 }
@@ -48,7 +50,6 @@ function SettingScreen({route, navigation}) {
     </View>
   );
 }
-
 function DictionaryScreen({route, navigation}) {
   return (
     <View style={Style.container}>
@@ -208,25 +209,32 @@ const App = () => {
       signIn: async (foundUser) => {
         const userToken = String(foundUser[0].userToken);
         const userName = foundUser[0].Username;
+        const id = foundUser[0].Id;
 
         try {
           await AsyncStorage.setItem('userToken', userToken);
-          //them user vao session
-          const url = IN4_USER.getUser;
-          fetch(url, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              username: userName,
-            }),
-          })
-            .then((res) => res.json())
-            .then((results) => {
-              AsyncStorage.setItem('user', JSON.stringify(results));
+          //session user
+          AsyncStorage.setItem('user', JSON.stringify(foundUser));
+          let user = await AsyncStorage.getItem('user');
+          let parsed = JSON.parse(user);
+          showData(parsed);
+
+          //session rank
+          console.log(id);
+          const getDefinition = IN4_APP.RankOfUser;
+          axios
+            .post(getDefinition, {
+              id: id,
             })
-            .catch((err) => {
-              console.log('err', err);
+            .then(function (response) {
+              AsyncStorage.setItem('rank', JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+              console.log(error.message);
             });
+          let rank = await AsyncStorage.getItem('rank');
+          let parsed2 = JSON.parse(rank);
+          showDataRank(parsed2);
         } catch (e) {
           console.log(e);
         }
@@ -234,7 +242,8 @@ const App = () => {
       },
       signOut: async () => {
         try {
-          await AsyncStorage.clear();
+          const keys = await AsyncStorage.getAllKeys();
+          await AsyncStorage.multiRemove(keys);
         } catch (e) {
           console.log(e);
         }
@@ -250,12 +259,54 @@ const App = () => {
     }),
     [],
   );
-
+  const [data, setData] = React.useState([
+    {
+      Id: '',
+      Username: '',
+      Password: '',
+      Name: '',
+      Email: '',
+      Avatar: '1',
+      RoleId: '',
+      IsActive: '',
+    },
+  ]);
+  const [ranks, setRank] = React.useState([
+    {
+      id: '',
+      id_user: '',
+      total_score: '',
+      current_score: '',
+      crown: '',
+      streak: '',
+      bestStreak: '',
+      hint: '',
+    },
+  ]);
+  const showData = (user) => {
+    if (user !== null) {
+      setData(user);
+    }
+  };
+  const showDataRank = (rank) => {
+    if (rank !== null) {
+      setRank(rank);
+    }
+  };
   useEffect(() => {
     setTimeout(async () => {
       let userToken;
       userToken = null;
       try {
+        //get user
+        let user = await AsyncStorage.getItem('user');
+        let parsed = JSON.parse(user);
+        showData(parsed);
+        //get rank
+        let rank = await AsyncStorage.getItem('rank');
+        let parsed2 = JSON.parse(rank);
+        showDataRank(parsed2);
+        //get token
         userToken = await AsyncStorage.getItem('userToken');
       } catch (e) {
         console.log(e);
@@ -294,6 +345,7 @@ const App = () => {
                 name="Home"
                 component={HomeScreen}
                 options={{headerShown: false}}
+                initialParams={{user: data[0], rank: ranks[0]}}
               />
               <Stack.Screen
                 name="Setting"

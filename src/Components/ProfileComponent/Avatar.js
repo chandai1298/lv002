@@ -4,34 +4,7 @@ import {Style, ProfileStyle, DIMENSION} from '../../CommonStyles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {LinearTextGradient} from 'react-native-text-gradient';
 
-const DATA = [
-  {
-    label: 'bạn bè',
-    icon: 'user-friends',
-    num: 16,
-    colorIcon: '#79c615',
-  },
-  {
-    label: 'tổng điểm',
-    icon: 'bolt',
-    num: 3746,
-    colorIcon: '#ffc107',
-  },
-  {
-    label: 'vương miện',
-    icon: 'crown',
-    num: 1265,
-    colorIcon: '#ff9800',
-  },
-  {
-    label: 'chuỗi ngày',
-    icon: 'fire-alt',
-    num: 16,
-    colorIcon: '#e91e63',
-  },
-];
-
-const AvatarItem = ({numBanbe, icon, colorIcon, label}) => {
+const AvatarItem = ({num, icon, colorIcon, label}) => {
   return (
     <View style={ProfileStyle.flexRowIcon}>
       <View style={ProfileStyle.widthIcon}>
@@ -44,13 +17,13 @@ const AvatarItem = ({numBanbe, icon, colorIcon, label}) => {
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}>
         <Text style={{fontSize: 18}}>
-          {numBanbe} {label}
+          {num} {label}
         </Text>
       </LinearTextGradient>
     </View>
   );
 };
-const Avatar = ({image, name, username}) => {
+const Avatar = ({image, name, username, rankData}) => {
   return (
     <View style={[ProfileStyle.sectionAvatar]}>
       <View style={[ProfileStyle.sectionAvtLeft, {paddingLeft: 5}]}>
@@ -79,29 +52,38 @@ const Avatar = ({image, name, username}) => {
         </View>
         <LinearTextGradient
           locations={[0, 1]}
-          style={Style.coverCenter}
+          style={[Style.coverCenter, {margin: 3, marginLeft: 0}]}
           colors={['#091048', '#754ea6']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}>
           <Text style={{fontSize: 18}}>{username}</Text>
         </LinearTextGradient>
-        <View>
-          <FlatList
-            style={{width: DIMENSION.width}}
-            data={DATA}
-            renderItem={({item}) => (
-              <AvatarItem
-                icon={item.icon}
-                colorIcon={item.colorIcon}
-                label={item.label}
-                numBanbe={item.num}
-              />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
-      </View>
 
+        <AvatarItem
+          num={16}
+          icon="user-friends"
+          colorIcon="#79c615"
+          label="bạn bè"
+        />
+        <AvatarItem
+          num={rankData.total_score}
+          icon="bolt"
+          colorIcon="#ffc107"
+          label="tổng điểm"
+        />
+        <AvatarItem
+          num={rankData.crown}
+          icon="crown"
+          colorIcon="#ff9800"
+          label="vương miện"
+        />
+        <AvatarItem
+          num={rankData.streak}
+          icon="fire-alt"
+          colorIcon="#e91e63"
+          label="chuỗi ngày"
+        />
+      </View>
       <View style={[ProfileStyle.SectionAvtRight, Style.coverCenter]}>
         <Image
           resizeMode="cover"
