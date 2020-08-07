@@ -11,6 +11,7 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useTheme} from '@react-navigation/native';
+import {LinearTextGradient} from 'react-native-text-gradient';
 
 const SplashScreen = ({navigation}) => {
   const {colors} = useTheme();
@@ -45,20 +46,27 @@ const SplashScreen = ({navigation}) => {
           },
         ]}
         animation="fadeInUpBig">
-        <Text
-          style={[
-            styles.title,
-            {
-              color: '#754ea6',
-            },
-          ]}>
-          Learning everyday with everyone!
-        </Text>
-        <TouchableOpacity>
+        <LinearTextGradient
+          locations={[0, 1]}
+          colors={['#091048', '#754ea6']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}>
+          <Text
+            style={[
+              styles.title,
+              {
+                color: '#754ea6',
+              },
+            ]}>
+            Learning everyday with everyone!
+          </Text>
+        </LinearTextGradient>
+
+        {/* <TouchableOpacity>
           <Text style={{color: '#0581b9f0', marginTop: 15}}>
             Bắt đầu học ngay...
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('SignInScreen')}>
             <LinearGradient
@@ -105,8 +113,8 @@ const styles = StyleSheet.create({
     borderRadius: 200,
   },
   title: {
-    color: '#05375a',
     fontSize: 30,
+    fontStyle: 'italic',
     fontWeight: 'bold',
   },
   text: {
@@ -118,8 +126,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   signIn: {
-    width: 150,
-    height: 40,
+    width: 180,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
@@ -134,6 +142,7 @@ const styles = StyleSheet.create({
   },
   textSign: {
     color: 'white',
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });

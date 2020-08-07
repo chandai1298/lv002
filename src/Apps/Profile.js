@@ -6,6 +6,8 @@ import HeaderComponent from './HeaderComponent';
 import ThanhTich from '../Components/ProfileComponent/ThanhTich';
 import BanBe from '../Components/ProfileComponent/BanBe';
 import Avatar from '../Components/ProfileComponent/Avatar';
+import {IN4_APP} from '../ConnectServer/In4App';
+import axios from 'axios';
 
 function ThanhTichComponent() {
   return <ThanhTich />;
@@ -16,52 +18,38 @@ function BanBeComponent() {
 
 const Tab = createMaterialTopTabNavigator();
 const Profile = ({title, navigation, icon, desComponent, route}) => {
-  const {users, ranks} = route.params;
+  const {users} = route.params;
 
-  // const [data, setData] = React.useState([
-  //   {
-  //     Id: '',
-  //     Username: '',
-  //     Password: '',
-  //     Name: '',
-  //     Email: '',
-  //     Avatar: '1',
-  //     RoleId: '',
-  //     IsActive: '',
-  //   },
-  // ]);
-  // const [ranks, setRank] = React.useState([
-  //   {
-  //     id: '',
-  //     id_user: '',
-  //     total_score: '',
-  //     current_score: '',
-  //     crown: '',
-  //     streak: '',
-  //     bestStreak: '',
-  //     hint: '',
-  //   },
-  // ]);
-  // const showData = async () => {
-  //   let user = await AsyncStorage.getItem('user');
-  //   let parsed = JSON.parse(user);
-  //   setData(parsed);
-  //   const getDefinition = IN4_APP.RankOfUser;
-  //   axios
-  //     .post(getDefinition, {
-  //       id: parsed[0].Id,
-  //     })
-  //     .then(function (response) {
-  //       setRank(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error.message);
-  //     });
-  // };
+  const [ranks, setRank] = React.useState([
+    {
+      id: '',
+      id_user: '',
+      total_score: '',
+      current_score: '',
+      crown: '',
+      streak: '',
+      bestStreak: '',
+      hint: '',
+    },
+  ]);
 
-  // useEffect(() => {
-  //   showData();
-  // }, []);
+  const showData = () => {
+    const getDefinition = IN4_APP.RankOfUser;
+    axios
+      .post(getDefinition, {
+        id: users.Id,
+      })
+      .then(function (response) {
+        setRank(response.data);
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
+  };
+
+  useEffect(() => {
+    showData();
+  }, []);
   return (
     <View style={Style.container}>
       <StatusBar hidden={true} />
@@ -77,18 +65,12 @@ const Profile = ({title, navigation, icon, desComponent, route}) => {
         name={users.Name}
         username={users.Username}
         image={users.Avatar}
-        rankData={ranks}
+        rankData={ranks[0]}
       />
       <View style={ProfileStyle.containerPadding15}>
         <Tab.Navigator
           tabBarOptions={{
             labelStyle: [Style.text18, {color: '#9a9a9a'}],
-            style: {
-              // borderTopColor: '#754ea6',
-              // borderTopWidth: 3,
-            },
-            // activeTintColor: 'tomato',
-            // inactiveTintColor: 'gray',
           }}>
           <Tab.Screen
             name="ThanhTich"

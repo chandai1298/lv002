@@ -34,7 +34,7 @@ const RankScreen = ({navigation, route}) => {
 
 const Tab = createBottomTabNavigator();
 const BottomTabMain = ({navigation, route}) => {
-  const {user, rank} = route.params;
+  const {user} = route.params;
 
   return (
     <Tab.Navigator
@@ -63,7 +63,7 @@ const BottomTabMain = ({navigation, route}) => {
           ),
           inactiveTintColor: 'green',
         }}
-        initialParams={{users: user, ranks: rank}}
+        initialParams={{users: user}}
       />
       <Tab.Screen
         name="Profile"
@@ -79,7 +79,7 @@ const BottomTabMain = ({navigation, route}) => {
             />
           ),
         }}
-        initialParams={{users: user, ranks: rank}}
+        initialParams={{users: user}}
       />
       <Tab.Screen
         name="Rank"

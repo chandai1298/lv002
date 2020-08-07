@@ -47,7 +47,7 @@ const QuestionStyle = StyleSheet.create({
     paddingLeft: 15,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    // justifyContent: 'center',
+    justifyContent: 'center',
     paddingTop: 4,
     width: '100%',
     height: 50,

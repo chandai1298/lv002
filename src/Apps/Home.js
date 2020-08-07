@@ -3,6 +3,8 @@ import {Text, View, StatusBar} from 'react-native';
 import {Style, DIMENSION} from '../CommonStyles';
 import HeaderHome from '../Components/HomeComponents/HeaderHome';
 import HomeItem from '../Components/HomeComponents/HomeItem';
+import {IN4_APP} from '../ConnectServer/In4App';
+import axios from 'axios';
 
 const datas = [
   {
@@ -57,38 +59,36 @@ const datas = [
   },
 ];
 const Home = ({icon1, icon2, icon3, icon4, navigation, route}) => {
-  const {users, ranks} = route.params;
+  const {users} = route.params;
 
-  // const [ranks, setRank] = React.useState([
-  //   {
-  //     id: '',
-  //     id_user: '',
-  //     total_score: '',
-  //     current_score: '',
-  //     crown: '',
-  //     streak: '',
-  //     bestStreak: '',
-  //     hint: '',
-  //   },
-  // ]);
-  // const showData = async () => {
-  //   let user = await AsyncStorage.getItem('user');
-  //   let parsed = JSON.parse(user);
-  //   const getDefinition = IN4_APP.RankOfUser;
-  //   axios
-  //     .post(getDefinition, {
-  //       id: parsed[0].Id,
-  //     })
-  //     .then(function (response) {
-  //       setRank(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error.message);
-  //     });
-  // };
+  const [ranks, setRank] = React.useState([
+    {
+      id: '',
+      id_user: '',
+      total_score: '',
+      current_score: '',
+      crown: '',
+      streak: '',
+      bestStreak: '',
+      hint: '',
+    },
+  ]);
+  const showData = () => {
+    const getDefinition = IN4_APP.RankOfUser;
+    axios
+      .post(getDefinition, {
+        id: users.Id,
+      })
+      .then(function (response) {
+        setRank(response.data);
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
+  };
 
   useEffect(() => {
-    console.log(JSON.stringify(users) + ' ' + JSON.stringify(ranks));
+    showData();
   }, []);
   return (
     <View style={[{flex: 1}]}>
@@ -98,7 +98,7 @@ const Home = ({icon1, icon2, icon3, icon4, navigation, route}) => {
         icon2={icon2}
         icon3={icon3}
         icon4={icon4}
-        rank={ranks}
+        rank={ranks[0]}
       />
       <View style={[Style.coverCenter, {marginTop: 20}]}>
         {datas.map((item, key) => (

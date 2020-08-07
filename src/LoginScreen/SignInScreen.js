@@ -28,7 +28,6 @@ const SignInScreen = ({navigation}) => {
     isValidUser: true,
     isValidPassword: true,
   });
-  // const [user, setUser] = React.useState([]);
   const {colors} = useTheme();
   const {signIn} = React.useContext(AuthContext);
 
@@ -89,7 +88,6 @@ const SignInScreen = ({navigation}) => {
 
   const loginHandle = (userName, password) => {
     const apiURL = IN4_USER.getData;
-    // const foundUser = null;
     axios
       .get(apiURL)
       .then(function (response) {
@@ -147,12 +145,13 @@ const SignInScreen = ({navigation}) => {
         <View style={styles.action}>
           <FontAwesome name="user" color="#754ea6" size={20} />
           <TextInput
-            placeholder="Your Username"
+            placeholder="Your username"
             placeholderTextColor="#666666"
             style={[
               styles.textInput,
               {
                 color: colors.text,
+                fontSize: 16,
               },
             ]}
             autoCapitalize="none"
@@ -175,7 +174,6 @@ const SignInScreen = ({navigation}) => {
           style={[
             styles.text_footer,
             {
-              color: '#754ea6',
               marginTop: 35,
             },
           ]}>
@@ -184,13 +182,14 @@ const SignInScreen = ({navigation}) => {
         <View style={styles.action}>
           <Feather name="lock" color="#754ea6" size={20} />
           <TextInput
-            placeholder="Your Password"
+            placeholder="Your password"
             placeholderTextColor="#666666"
             secureTextEntry={data.secureTextEntry ? true : false}
             style={[
               styles.textInput,
               {
                 color: colors.text,
+                fontSize: 16,
               },
             ]}
             autoCapitalize="none"
@@ -211,7 +210,15 @@ const SignInScreen = ({navigation}) => {
         )}
 
         <TouchableOpacity>
-          <Text style={{color: '#754ea6', marginTop: 15}}>Quên mật khẩu?</Text>
+          <Text
+            style={{
+              color: '#754ea6',
+              marginTop: 15,
+              fontSize: 16,
+              fontStyle: 'italic',
+            }}>
+            Quên mật khẩu?
+          </Text>
         </TouchableOpacity>
         <View style={styles.button}>
           <TouchableOpacity
@@ -290,6 +297,8 @@ const styles = StyleSheet.create({
   text_footer: {
     color: '#05375a',
     fontSize: 18,
+    color: '#754ea6',
+    fontWeight: 'bold',
   },
   action: {
     flexDirection: 'row',
